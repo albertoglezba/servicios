@@ -1,0 +1,39 @@
+<table id='instrumentosJuridicos'>
+  <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Grupo</th>
+      <th>Tipo instrumento legal</th>
+      <th>Objeto</th>
+      <th>Monto total</th>
+      <!--th>Version pública</th-->
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Dato persona área instutución</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @instrumentos.each do |instrumento| %>
+      <tr>
+        <td><%= instrumento.Identificador1 %></td>
+        <td><%= instrumento.Grupo %></td>
+        <td><%= instrumento.TipoInstrumentoLegal %></td>
+        <td><%= instrumento.Objeto %></td>
+        <td><%= instrumento.MontoTotal %></td>
+        <!--td><%#= instrumento.VersionPublica %></td-->
+        <td><%= instrumento.Nombre %></td>
+        <td><%= instrumento.Apellido %></td>
+        <td><%= instrumento.DatoPersonaAreaInstutucion %></td>
+        <td><%#= link_to 'Show', instrumento %></td>
+        <td><%#= link_to 'Edit', edit_instrumento_path(instrumento) %></td>
+        <td><%#= link_to 'Destroy', instrumento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Instrumento', new_instrumento_path %>
