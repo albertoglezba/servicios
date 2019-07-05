@@ -19,7 +19,7 @@ class DatInstrumentoLegal < ApplicationRecord
 , Dat_InstrumentoLegal.VersionPublica
 , `#tmpObjetoPAI`.Nombre
 , `#tmpObjetoPAI`.Apellido
-, `#tmpObjetoPAI`.DatoPersonaAreaInstutucion').from('Dat_InstrumentoLegal').joins(:Cat_AreasCONABIO, :Cat_GrupoInstrumentoLegal, :Cat_instituciones).where('Cat_Instituciones.IdInstitucionAsc Not In (1622,2927)') } 
+, `#tmpObjetoPAI`.DatoPersonaAreaInstutucion').from('Dat_InstrumentoLegal').joins(:Cat_AreasCONABIO, :Cat_GrupoInstrumentoLegal, :Cat_instituciones).where('Cat_Instituciones.IdInstitucionAsc Not In (1622,2927)').where('Year(`FechaFirma`) In (2018,2019)') }
 
     
 end
