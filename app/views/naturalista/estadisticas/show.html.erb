@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @naturalista_estadistica.titulo %>
+</p>
+
+<p>
+  <strong>Icono:</strong>
+  <%= @naturalista_estadistica.icono %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @naturalista_estadistica.descripcion %>
+</p>
+
+<p>
+  <strong>Lugar:</strong>
+  <%= @naturalista_estadistica.lugar_id %>
+</p>
+
+<p>
+  <strong>Numero especies:</strong>
+  <%= @naturalista_estadistica.numero_especies %>
+</p>
+
+<p>
+  <strong>Numero observaciones:</strong>
+  <%= @naturalista_estadistica.numero_observaciones %>
+</p>
+
+<p>
+  <strong>Numero observadores:</strong>
+  <%= @naturalista_estadistica.numero_observadores %>
+</p>
+
+<p>
+  <strong>Numero identificadores:</strong>
+  <%= @naturalista_estadistica.numero_identificadores %>
+</p>
+
+<p>
+  <strong>Numero miembros:</strong>
+  <%= @naturalista_estadistica.numero_miembros %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @naturalista_estadistica.estado %>
+</p>
+
+<p>
+  <strong>Tipo lugar:</strong>
+  <%= @naturalista_estadistica.tipo_lugar %>
+</p>
+
+<%= link_to 'Edit', edit_naturalista_estadistica_path(@naturalista_estadistica) %> |
+<%= link_to 'Back', naturalista_estadisticas_path %>

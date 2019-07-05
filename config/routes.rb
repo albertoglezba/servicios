@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :naturalista do
+    resources :estadisticas
+  end
   resources :instrumentos
   root 'instrumentos#index'
   

@@ -1,0 +1,72 @@
+<%= form_with(model: naturalista_estadistica, local: true) do |form| %>
+  <% if naturalista_estadistica.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(naturalista_estadistica.errors.count, "error") %> prohibited this naturalista_estadistica from being saved:</h2>
+
+      <ul>
+      <% naturalista_estadistica.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo, id: :naturalista_estadistica_titulo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :icono %>
+    <%= form.text_field :icono, id: :naturalista_estadistica_icono %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion, id: :naturalista_estadistica_descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lugar_id %>
+    <%= form.number_field :lugar_id, id: :naturalista_estadistica_lugar_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_especies %>
+    <%= form.number_field :numero_especies, id: :naturalista_estadistica_numero_especies %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_observaciones %>
+    <%= form.number_field :numero_observaciones, id: :naturalista_estadistica_numero_observaciones %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_observadores %>
+    <%= form.number_field :numero_observadores, id: :naturalista_estadistica_numero_observadores %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_identificadores %>
+    <%= form.number_field :numero_identificadores, id: :naturalista_estadistica_numero_identificadores %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_miembros %>
+    <%= form.number_field :numero_miembros, id: :naturalista_estadistica_numero_miembros %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.text_field :estado, id: :naturalista_estadistica_estado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_lugar %>
+    <%= form.text_field :tipo_lugar, id: :naturalista_estadistica_tipo_lugar %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
