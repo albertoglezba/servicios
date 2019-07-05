@@ -21,7 +21,7 @@
         <td><%= instrumento.Grupo %></td>
         <td><%= instrumento.TipoInstrumentoLegal %></td>
         <td><%= instrumento.Objeto %></td>
-        <td><%= instrumento.MontoTotal %></td>
+        <td><%= number_to_currency(instrumento.MontoTotal) %></td>
         <!--td><%#= instrumento.VersionPublica %></td-->
         <td><%= instrumento.Nombre %></td>
         <td><%= instrumento.Apellido %></td>
