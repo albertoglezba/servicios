@@ -2,6 +2,59 @@ class Naturalista::Estadistica < ApplicationRecord
 
   establish_connection(:sqlite)
 
+  POR_PAGINA = 30.freeze
+
+  def self.actualizaProyectos
+    consulta = 'projects?place_id=6793'
+    jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
+    return unless jresp['total_results'].present?
+
+    paginas = jresp['total_results']%POR_PAGINA > 0 ? (jresp['total_results']/POR_PAGINA) + 1 : jresp['total_results']/POR_PAGINA
+    paginas.times do |i|
+      consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{i+1}"
+      jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
+      return unless jresp['total_results'].present?
+
+      jresp['results'].each do |proyecto|
+        begin
+          proyecto = Naturalista::Estadistica.find(proyecto['id'])
+        rescue
+          proyecto = Naturalista::Estadistica.new
+          proyecto.id = proyecto['id'].to_i
+        end
+
+        proyecto.actualizaProyecto
+      end
+
+      return
+    end
+
+  end
+
+  def actualizaProyecto
+    obtenerInfoProyectos
+    obtenerNumeroEspecies
+    obtenerNumeroObservaciones
+    obtenerNumeroObservadores
+    obtenerNumeroIdentificadores
+    obtenerNumeroMiembros
+
+    save if changed?
+  end
+
+  def obtenerInfoProyectos
+    consulta = "projects/#{id}"
+    jresp = consultaNaturalista(consulta)
+    return unless jresp['total_results'].present?
+
+    proyecto = jresp['results'][0]
+    self.id = proyecto['id']
+    self.titulo = proyecto['title']
+    self.icono = proyecto['icon']
+    self.descripcion = proyecto['description']
+    self.lugar_id = proyecto['place_id']
+  end
+
   def obtenerNumeroEspecies
     consulta = "observations/species_counts?project_id=#{id}"
     jresp = consultaNaturalista(consulta)
@@ -42,28 +95,13 @@ class Naturalista::Estadistica < ApplicationRecord
     self.numero_miembros = jresp['total_results']
   end
 
-  def obtenerInfoProyectos
-    consulta = "projects/#{id}"
-    jresp = consultaNaturalista(consulta)
-    return unless jresp['total_results'].present?
-
-    proyecto = jresp['results'][0]
-    self.id = proyecto['id']
-    self.titulo = proyecto['title']
-    self.icono = proyecto['icon']
-    self.descripcion = proyecto['description']
-    self.lugar_id = proyecto['place_id']
-  end
-
-  def consultaNaturalista consulta
-    uri = URI.parse(URI.escape("http://api.inaturalist.org/v1/" << consulta))
-    req = Net::HTTP::Get.new(uri.to_s)
+  def consultaNaturalista(consulta)
+    url = "http://api.inaturalist.org/v1/" << consulta
+    #req = Net::HTTP::Get.new(uri.to_s)
 
     begin
-      http = Net::HTTP.new(uri.host, uri.port)
-      res = http.request(req)
-
-      jres = JSON.parse(res.body)
+      rest_client = RestClient::Request.execute(method: :get, url: url, timeout: 20)
+      jres = JSON.parse(rest_client)
     rescue => e
       jres = { estatus: 505, error: e.message }
     end
