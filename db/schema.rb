@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190705223114) do
+ActiveRecord::Schema.define(version: 20190708233521) do
 
   create_table "naturalista_estadisticas", force: :cascade do |t|
     t.string "titulo"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20190705223114) do
     t.string "tipo_lugar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ubicacion"
+    t.index ["titulo"], name: "index_naturalista_estadisticas_on_titulo"
+    t.index ["ubicacion"], name: "index_naturalista_estadisticas_on_ubicacion"
   end
 
 end
