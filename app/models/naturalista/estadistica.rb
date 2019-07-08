@@ -2,10 +2,10 @@ class Naturalista::Estadistica < ApplicationRecord
 
   establish_connection(:sqlite)
 
-  POR_PAGINA = 30.freeze
+  POR_PAGINA = 5.freeze
 
   def self.actualizaProyectos
-    consulta = 'projects?place_id=6793'
+    consulta = 'projects?place_id=6793&per_page=1&page=1'
     jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
     return unless jresp['total_results'].present?
 
@@ -15,12 +15,16 @@ class Naturalista::Estadistica < ApplicationRecord
       jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
       return unless jresp['total_results'].present?
 
-      jresp['results'].each do |proyecto|
+      jresp['results'].each do |p|
+        Rails.logger.debug "[DEBUG] - Proyecto ID: #{p['id']}"
+
         begin
-          proyecto = Naturalista::Estadistica.find(proyecto['id'])
+          proyecto = Naturalista::Estadistica.find(p['id'])
+          Rails.logger.debug "[DEBUG] - Proyecto existente"
         rescue
           proyecto = Naturalista::Estadistica.new
-          proyecto.id = proyecto['id'].to_i
+          proyecto.id = p['id'].to_i
+          Rails.logger.debug "[DEBUG] - Proyecto nuevo"
         end
 
         proyecto.actualizaProyecto
@@ -39,7 +43,14 @@ class Naturalista::Estadistica < ApplicationRecord
     obtenerNumeroIdentificadores
     obtenerNumeroMiembros
 
-    save if changed?
+    if changed?
+      Rails.logger.debug "[DEBUG] - Hubo cambios"
+      save
+    else
+      Rails.logger.debug "[DEBUG] - Sin cambios"
+    end
+
+    sleep(5)  # Para evitar que nos bannen otra vez
   end
 
   def obtenerInfoProyectos
@@ -53,6 +64,8 @@ class Naturalista::Estadistica < ApplicationRecord
     self.icono = proyecto['icon']
     self.descripcion = proyecto['description']
     self.lugar_id = proyecto['place_id']
+    self.created_at = proyecto['created_at']
+    self.updated_at = proyecto['updated_at']
   end
 
   def obtenerNumeroEspecies
@@ -97,7 +110,6 @@ class Naturalista::Estadistica < ApplicationRecord
 
   def consultaNaturalista(consulta)
     url = "http://api.inaturalist.org/v1/" << consulta
-    #req = Net::HTTP::Get.new(uri.to_s)
 
     begin
       rest_client = RestClient::Request.execute(method: :get, url: url, timeout: 20)
