@@ -1,4 +1,4 @@
-class DatInstrumentoLegal < ApplicationRecord
+class Juridico::DatInstrumentoLegal < Instrumentos
 
   self.table_name = 'Dat_InstrumentoLegal'
   
@@ -21,5 +21,4 @@ class DatInstrumentoLegal < ApplicationRecord
 , `#tmpObjetoPAI`.Apellido
 , `#tmpObjetoPAI`.DatoPersonaAreaInstutucion').from('Dat_InstrumentoLegal').joins(:Cat_AreasCONABIO, :Cat_GrupoInstrumentoLegal, :Cat_instituciones).where('Cat_Instituciones.IdInstitucionAsc Not In (1622,2927)').where('Year(`FechaFirma`) In (2018,2019)').order(:Identificador1) }
 
-    
 end

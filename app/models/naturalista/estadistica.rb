@@ -1,7 +1,5 @@
 class Naturalista::Estadistica < ApplicationRecord
 
-  establish_connection(:sqlite)
-
   POR_PAGINA = 300.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
 

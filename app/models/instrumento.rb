@@ -1,2 +1,0 @@
-class Instrumento
-end
