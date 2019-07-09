@@ -2,7 +2,7 @@ class Naturalista::Estadistica < ApplicationRecord
 
   establish_connection(:sqlite)
 
-  POR_PAGINA = 20.freeze
+  POR_PAGINA = 300.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
 
   def self.actualizaProyectos
@@ -29,10 +29,9 @@ class Naturalista::Estadistica < ApplicationRecord
         end
 
         proyecto.actualizaProyecto
-      end
+      end  # End todos los proyectos por pagina
 
-      return
-    end
+    end  # End paginado
 
   end
 
