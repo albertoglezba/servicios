@@ -6,13 +6,13 @@ class Naturalista::Estadistica < ApplicationRecord
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
 
   def self.actualizaProyectos
-    consulta = 'projects?place_id=6793&per_page=1&page=1'
+    consulta = 'projects?place_id=6793&type=collection&per_page=1&page=1'
     jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
     return unless jresp['total_results'].present?
 
     paginas = jresp['total_results']%POR_PAGINA > 0 ? (jresp['total_results']/POR_PAGINA) + 1 : jresp['total_results']/POR_PAGINA
     paginas.times do |i|
-      consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{i+1}"
+      consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{i+1}&order_by=created&type=collection"
       jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
       return unless jresp['total_results'].present?
 
@@ -30,7 +30,6 @@ class Naturalista::Estadistica < ApplicationRecord
 
         proyecto.actualizaProyecto
       end  # End todos los proyectos por pagina
-
     end  # End paginado
 
   end
