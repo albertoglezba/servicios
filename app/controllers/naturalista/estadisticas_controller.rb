@@ -4,7 +4,7 @@ class Naturalista::EstadisticasController < ApplicationController
   # GET /naturalista/estadisticas
   # GET /naturalista/estadisticas.json
   def index
-    @naturalista_estadisticas = Naturalista::Estadistica.all
+    @naturalista_estadisticas = Naturalista::Estadistica.all.order(numero_observaciones: :desc)
   end
 
   # GET /naturalista/estadisticas/1

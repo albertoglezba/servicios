@@ -1,58 +1,54 @@
+<h4>Proyecto <%= @naturalista_estadistica.titulo %></h4>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Titulo:</strong>
-  <%= @naturalista_estadistica.titulo %>
+  <strong>Ícono:</strong>
+  <%= @naturalista_estadistica.icono.present? ? image_tag(@naturalista_estadistica.icono) : '' %>
 </p>
 
 <p>
-  <strong>Icono:</strong>
-  <%= @naturalista_estadistica.icono %>
-</p>
-
-<p>
-  <strong>Descripcion:</strong>
+  <strong>Descripción:</strong>
   <%= @naturalista_estadistica.descripcion %>
 </p>
 
 <p>
-  <strong>Lugar:</strong>
-  <%= @naturalista_estadistica.lugar_id %>
+  <strong>Ubicación:</strong>
+  <%= @naturalista_estadistica.ubicacion %>
 </p>
 
 <p>
-  <strong>Numero especies:</strong>
+  <strong>Tipo de lugar:</strong>
+  <%= @naturalista_estadistica.tipo_lugar %>
+</p>
+
+<p>
+  <strong>Número de especies:</strong>
   <%= @naturalista_estadistica.numero_especies %>
 </p>
 
 <p>
-  <strong>Numero observaciones:</strong>
+  <strong>Número observaciones:</strong>
   <%= @naturalista_estadistica.numero_observaciones %>
 </p>
 
 <p>
-  <strong>Numero observadores:</strong>
+  <strong>Número observadores:</strong>
   <%= @naturalista_estadistica.numero_observadores %>
 </p>
 
 <p>
-  <strong>Numero identificadores:</strong>
+  <strong>Número identificadores:</strong>
   <%= @naturalista_estadistica.numero_identificadores %>
 </p>
 
 <p>
-  <strong>Numero miembros:</strong>
+  <strong>Número miembros:</strong>
   <%= @naturalista_estadistica.numero_miembros %>
 </p>
 
 <p>
-  <strong>Estado:</strong>
-  <%= @naturalista_estadistica.estado %>
-</p>
-
-<p>
-  <strong>Tipo lugar:</strong>
-  <%= @naturalista_estadistica.tipo_lugar %>
+  <strong>ID del lugar:</strong>
+  <%= @naturalista_estadistica.lugar_id %>
 </p>
 
 <%= link_to 'Edit', edit_naturalista_estadistica_path(@naturalista_estadistica) %> |

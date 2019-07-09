@@ -27,8 +27,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :lugar_id %>
-    <%= form.number_field :lugar_id, id: :naturalista_estadistica_lugar_id %>
+    <%= form.label :tipo_lugar %>
+    <%= form.text_field :tipo_lugar, id: :naturalista_estadistica_tipo_lugar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ubicacion %>
+    <%= form.text_field :ubicacion, id: :naturalista_estadistica_tipo_lugar %>
   </div>
 
   <div class="field">
@@ -57,13 +62,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :estado %>
-    <%= form.text_field :estado, id: :naturalista_estadistica_estado %>
-  </div>
-
-  <div class="field">
-    <%= form.label :tipo_lugar %>
-    <%= form.text_field :tipo_lugar, id: :naturalista_estadistica_tipo_lugar %>
+    <%= form.label :lugar_id %>
+    <%= form.number_field :lugar_id, id: :naturalista_estadistica_lugar_id %>
   </div>
 
   <div class="actions">

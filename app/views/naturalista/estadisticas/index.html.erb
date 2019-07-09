@@ -1,21 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Naturalista Estadisticas</h1>
+<h1>Administración: Estadisticas por proyecto de Naturalista</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Titulo</th>
-      <th>Icono</th>
-      <th>Descripcion</th>
-      <th>Lugar</th>
-      <th>Numero especies</th>
-      <th>Numero observaciones</th>
-      <th>Numero observadores</th>
-      <th>Numero identificadores</th>
-      <th>Numero miembros</th>
-      <th>Estado</th>
+      <th>Título</th>
+      <th>Ubicación</th>
       <th>Tipo lugar</th>
+      <th>Número observaciones</th>
+      <th>Número especies</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,16 +18,10 @@
     <% @naturalista_estadisticas.each do |naturalista_estadistica| %>
       <tr>
         <td><%= naturalista_estadistica.titulo %></td>
-        <td><%= naturalista_estadistica.icono %></td>
-        <td><%= naturalista_estadistica.descripcion %></td>
-        <td><%= naturalista_estadistica.lugar_id %></td>
-        <td><%= naturalista_estadistica.numero_especies %></td>
-        <td><%= naturalista_estadistica.numero_observaciones %></td>
-        <td><%= naturalista_estadistica.numero_observadores %></td>
-        <td><%= naturalista_estadistica.numero_identificadores %></td>
-        <td><%= naturalista_estadistica.numero_miembros %></td>
-        <td><%= naturalista_estadistica.estado %></td>
+        <td><%= naturalista_estadistica.ubicacion %></td>
         <td><%= naturalista_estadistica.tipo_lugar %></td>
+        <td><%= naturalista_estadistica.numero_observaciones %></td>
+        <td><%= naturalista_estadistica.numero_especies %></td>
         <td><%= link_to 'Show', naturalista_estadistica %></td>
         <td><%= link_to 'Edit', edit_naturalista_estadistica_path(naturalista_estadistica) %></td>
         <td><%= link_to 'Destroy', naturalista_estadistica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -44,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Naturalista Estadistica', new_naturalista_estadistica_path %>
+<%#= link_to 'New Naturalista Estadistica', new_naturalista_estadistica_path %>
