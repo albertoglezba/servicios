@@ -2,7 +2,7 @@ class Naturalista::Estadistica < ApplicationRecord
 
   establish_connection(:sqlite)
 
-  POR_PAGINA = 15.freeze
+  POR_PAGINA = 20.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
 
   def self.actualizaProyectos
@@ -45,6 +45,7 @@ class Naturalista::Estadistica < ApplicationRecord
     obtenerNumeroObservadores
     obtenerNumeroIdentificadores
     obtenerNumeroMiembros
+    obtenerUbicacion if lugar_id.present?
 
     if changed?
       Rails.logger.debug "[DEBUG] - Hubo cambios"
@@ -109,6 +110,14 @@ class Naturalista::Estadistica < ApplicationRecord
     return unless jresp['total_results'].present?
 
     self.numero_miembros = jresp['total_results']
+  end
+
+  def obtenerUbicacion
+    consulta = "places/#{lugar_id}"
+    jresp = consultaNaturalista(consulta)
+    return unless jresp['total_results'].present?
+
+    self.ubicacion = jresp['results'][0]['display_name']
   end
 
   def consultaNaturalista(consulta)
