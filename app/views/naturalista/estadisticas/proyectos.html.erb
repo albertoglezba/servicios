@@ -11,7 +11,7 @@
       <th>Ordena por <%= form.select :orden, Naturalista::Estadistica::ORDEN, include_blank: true %></th>
       <th><%= form.text_field :titulo, placeholder: 'Proyecto' %></th>
       <th><%= form.text_field :ubicacion, placeholder: 'Ubicación' %></th>
-      <th>Tipo de proyecto <%= form.select :tipo_lugar, Naturalista::Estadistica::TIPOS_PROYECTOS, include_blank: true %></th>
+      <th>Tipo de proyecto <%= form.select :tipo_proyecto, Naturalista::Estadistica::TIPOS_PROYECTOS, include_blank: true %></th>
       <th># observaciones</th>
       <th># especies</th>
       <th># observadores</th>

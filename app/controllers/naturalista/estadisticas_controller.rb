@@ -89,6 +89,6 @@ class Naturalista::EstadisticasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def naturalista_estadistica_params
-      params.require(:naturalista_estadistica).permit(:titulo, :icono, :descripcion, :lugar_id, :numero_especies, :numero_observaciones, :numero_observadores, :numero_identificadores, :numero_miembros, :estado, :tipo_lugar, :ubicacion, :orden)
+      params.require(:naturalista_estadistica).permit(:titulo, :icono, :descripcion, :lugar_id, :numero_especies, :numero_observaciones, :numero_observadores, :numero_identificadores, :numero_miembros, :estado, :tipo_proyecto, :ubicacion, :orden)
     end
 end

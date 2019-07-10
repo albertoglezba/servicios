@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190708233521) do
+ActiveRecord::Schema.define(version: 20190710203030) do
 
   create_table "naturalista_estadisticas", force: :cascade do |t|
     t.string "titulo"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20190708233521) do
     t.integer "numero_identificadores"
     t.integer "numero_miembros"
     t.string "estado"
-    t.string "tipo_lugar"
+    t.string "tipo_proyecto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ubicacion"
