@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :naturalista do
-    resources :estadisticas
+    resources :estadisticas do
+      collection do
+        get 'proyectos'
+      end
+    end
   end
 
   namespace :juridico do

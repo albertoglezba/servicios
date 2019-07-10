@@ -1,5 +1,13 @@
 class Naturalista::EstadisticasController < ApplicationController
   before_action :set_naturalista_estadistica, only: [:show, :edit, :update, :destroy]
+  before_action :proyectos do
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  end
+
+  layout false, only: [:proyectos]
 
   # GET /naturalista/estadisticas
   # GET /naturalista/estadisticas.json
@@ -59,6 +67,12 @@ class Naturalista::EstadisticasController < ApplicationController
       format.html { redirect_to naturalista_estadisticas_url, notice: 'Estadistica was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # GET /naturalista/estadisticas/proyectos
+  def proyectos
+    @naturalista_estadistica = Naturalista::Estadistica.new
+    @naturalista_estadisticas = Naturalista::Estadistica.all.order(numero_observaciones: :desc)
   end
 
   private
