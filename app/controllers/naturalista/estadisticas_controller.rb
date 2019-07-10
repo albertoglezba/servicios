@@ -1,13 +1,6 @@
 class Naturalista::EstadisticasController < ApplicationController
   before_action :set_naturalista_estadistica, only: [:show, :edit, :update, :destroy]
-  before_action :proyectos do
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-    headers['Access-Control-Request-Method'] = '*'
-    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  end
-
-  #layout false, only: [:proyectos]
+  layout false, only: [:proyectos]
 
   # GET /naturalista/estadisticas
   # GET /naturalista/estadisticas.json
@@ -71,15 +64,21 @@ class Naturalista::EstadisticasController < ApplicationController
 
   # GET /naturalista/estadisticas/proyectos
   def proyectos
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+
     # Request cuando cambia un input o select
     if params[:authenticity_token].present?
       @naturalista_estadistica = Naturalista::Estadistica.new(naturalista_estadistica_params)
+      @naturalista_estadisticas = @naturalista_estadistica.busqueda
+      render partial: 'proyectos'
     else
       @naturalista_estadistica = Naturalista::Estadistica.new
       @naturalista_estadistica.orden = 'numero_observaciones'
+      @naturalista_estadisticas = @naturalista_estadistica.busqueda
     end
-
-    @naturalista_estadisticas = @naturalista_estadistica.busqueda
   end
 
   private

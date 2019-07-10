@@ -5,14 +5,14 @@ class Naturalista::Estadistica < ApplicationRecord
   ORDEN = [['Número de observaciones', 'numero_observaciones'],['Número de especies', 'numero_especies'],['Número de observadores', 'numero_observadores'],['Número de identificadores', 'numero_identificadores'],['Número de miembros', 'numero_miembros']]
   TIPOS_PROYECTOS = ['ANP', 'Arqueológicos', 'Reservas']
 
-  scope :where_regexp, -> (campo, valor) { where("#{campo} REGEXP ?", valor) }
+  scope :where_like, -> (campo, valor) { where("#{campo} LIKE '%#{valor}%'") }
   attr_accessor :orden
 
   # Hace el query con los propios campos :O
   def busqueda
     naturalista_estadisticas = Naturalista::Estadistica
-    naturalista_estadisticas = naturalista_estadisticas.where_regexp('titulo', titulo) if titulo.present?
-    naturalista_estadisticas = naturalista_estadisticas.where_regexp('ubicacion', ubicacion) if ubicacion.present?
+    naturalista_estadisticas = naturalista_estadisticas.where_like('titulo', titulo) if titulo.present?
+    naturalista_estadisticas = naturalista_estadisticas.where_like('ubicacion', ubicacion) if ubicacion.present?
     naturalista_estadisticas.order("#{orden} DESC") if orden.present?
   end
 

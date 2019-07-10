@@ -1,0 +1,13 @@
+<% @naturalista_estadisticas.each do |naturalista_estadistica| %>
+  <tr>
+    <td><%= naturalista_estadistica.icono.present? ? image_tag(naturalista_estadistica.icono) : '' %></td>
+    <td><%= link_to naturalista_estadistica.titulo, "https://www.naturalista.mx/projects/#{naturalista_estadistica.id}", target: :_blank %></td>
+    <td><%= naturalista_estadistica.ubicacion %></td>
+    <td><%= naturalista_estadistica.tipo_lugar %></td>
+    <td><%= naturalista_estadistica.numero_observaciones %></td>
+    <td><%= naturalista_estadistica.numero_especies %></td>
+    <td><%= naturalista_estadistica.numero_observadores %></td>
+    <td><%= naturalista_estadistica.numero_identificadores %></td>
+    <td><%= naturalista_estadistica.numero_miembros %></td>
+  </tr>
+<% end %>
