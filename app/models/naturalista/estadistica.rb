@@ -2,6 +2,7 @@ class Naturalista::Estadistica < ApplicationRecord
 
   POR_PAGINA = 300.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
+  ORDEN = [['desc', 0], ['asc', 1]]
 
   def self.actualizaProyectos
     consulta = 'projects?place_id=6793&type=collection&per_page=1&page=1'

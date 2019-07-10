@@ -1,6 +1,10 @@
-<h3>NOTA: los datos son actualizados cada tercer día a apartir de las 00:00 hrs.</h3>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<%= form_with(model: @naturalista_estadistica) do |form| %>
+<h4>NOTA: los datos son actualizados cada tercer día a apartir de las 00:00 hrs.</h4>
+
+<h2><%= @naturalista_estadisticas.length %> proyectos</h2>
+
+<%= form_with(model: @naturalista_estadistica, id: 'proyectos-form') do |form| %>
 
   <table class="table table-condensed table-responsive table-hover table-stripped">
     <thead>
@@ -9,11 +13,11 @@
       <th><%= form.text_field :titulo, placeholder: 'Proyecto' %></th>
       <th><%= form.text_field :ubicacion, placeholder: 'Ubicación' %></th>
       <th>Tipo de proyecto <%= form.select :tipo_lugar, [], include_blank: true %></th>
-      <th># observaciones <%= form.select :numero_observaciones, [:desc, :asc], include_blank: true %></th>
-      <th># especies <%= form.select :numero_especies, [:desc, :asc], include_blank: true %></th>
-      <th># observadores <%= form.select :numero_observadores, [:desc, :asc], include_blank: true %></th>
-      <th># identificadores <%= form.select :numero_identificadores, [:desc, :asc], include_blank: true %></th>
-      <th># miembros <%= form.select :numero_miembros, [:desc, :asc], include_blank: true %></th>
+      <th># observaciones <%= form.select :numero_observaciones, Naturalista::Estadistica::ORDEN, include_blank: true %></th>
+      <th># especies <%= form.select :numero_especies, Naturalista::Estadistica::ORDEN, include_blank: true %></th>
+      <th># observadores <%= form.select :numero_observadores, Naturalista::Estadistica::ORDEN, include_blank: true %></th>
+      <th># identificadores <%= form.select :numero_identificadores, Naturalista::Estadistica::ORDEN, include_blank: true %></th>
+      <th># miembros <%= form.select :numero_miembros, Naturalista::Estadistica::ORDEN, include_blank: true %></th>
     </tr>
     </thead>
 
@@ -36,4 +40,9 @@
 
 <% end %>
 
-<script id="serviciosjs">console.log('jaloooo!!!!')</script>
+<script id="serviciosjs">
+  $('#proyectos-form').on('change', 'input, select', function(){
+      
+      console.log($('#proyectos-form').submit());
+  });
+</script>

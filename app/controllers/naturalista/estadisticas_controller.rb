@@ -7,7 +7,7 @@ class Naturalista::EstadisticasController < ApplicationController
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   end
 
-  layout false, only: [:proyectos]
+  #layout false, only: [:proyectos]
 
   # GET /naturalista/estadisticas
   # GET /naturalista/estadisticas.json
@@ -72,6 +72,7 @@ class Naturalista::EstadisticasController < ApplicationController
   # GET /naturalista/estadisticas/proyectos
   def proyectos
     @naturalista_estadistica = Naturalista::Estadistica.new
+    @naturalista_estadistica.numero_observaciones = 0
     @naturalista_estadisticas = Naturalista::Estadistica.all.order(numero_observaciones: :desc)
   end
 
