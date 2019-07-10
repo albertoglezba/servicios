@@ -72,7 +72,7 @@ class Naturalista::EstadisticasController < ApplicationController
   # GET /naturalista/estadisticas/proyectos
   def proyectos
     @naturalista_estadistica = Naturalista::Estadistica.new
-    @naturalista_estadistica.numero_observaciones = 0
+    @naturalista_estadistica.orden = 'numero_observaciones'
     @naturalista_estadisticas = Naturalista::Estadistica.all.order(numero_observaciones: :desc)
   end
 
@@ -84,6 +84,6 @@ class Naturalista::EstadisticasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def naturalista_estadistica_params
-      params.require(:naturalista_estadistica).permit(:titulo, :icono, :descripcion, :lugar_id, :numero_especies, :numero_observaciones, :numero_observadores, :numero_identificadores, :numero_miembros, :estado, :tipo_lugar, :ubicacion)
+      params.require(:naturalista_estadistica).permit(:titulo, :icono, :descripcion, :lugar_id, :numero_especies, :numero_observaciones, :numero_observadores, :numero_identificadores, :numero_miembros, :estado, :tipo_lugar, :ubicacion, :orden)
     end
 end

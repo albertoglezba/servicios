@@ -2,7 +2,19 @@ class Naturalista::Estadistica < ApplicationRecord
 
   POR_PAGINA = 300.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
-  ORDEN = [['desc', 0], ['asc', 1]]
+  ORDEN = [['Número de observaciones', 'numero_observaciones'],['Número de especies', 'numero_especie'],['Número de observadores', 'numero_observadores'],['Número de identificadores', 'numero_identificadores'],['Número de miembros', 'numero_miembros']]
+  TIPOS_PROYECTOS = ['ANP', 'Arqueológicos', 'Reservas']
+
+  scope :where_regexp, -> (campo, valor) { where("#{campo} REGEXP ?", valor) }
+  attr_accessor :orden
+
+  # Hace el query con los propios campos :O
+  def busqueda
+    naturalista_estadisticas = Naturalista::Estadistica
+    naturalista_estadisticas = naturalista_estadisticas.where_regexp('titulo', titulo) if titulo.present?
+    naturalista_estadisticas = naturalista_estadisticas.where_regexp('ubicacion', ubicacion) if ubicacion.present?
+    naturalista_estadisticas = naturalista_estadisticas.order("#{orden} DESC") if orden.present?
+  end
 
   def self.actualizaProyectos
     consulta = 'projects?place_id=6793&type=collection&per_page=1&page=1'
