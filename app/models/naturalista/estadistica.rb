@@ -2,7 +2,7 @@ class Naturalista::Estadistica < ApplicationRecord
 
   POR_PAGINA = 300.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
-  ORDEN = [['Número de observaciones', 'numero_observaciones'],['Número de especies', 'numero_especie'],['Número de observadores', 'numero_observadores'],['Número de identificadores', 'numero_identificadores'],['Número de miembros', 'numero_miembros']]
+  ORDEN = [['Número de observaciones', 'numero_observaciones'],['Número de especies', 'numero_especies'],['Número de observadores', 'numero_observadores'],['Número de identificadores', 'numero_identificadores'],['Número de miembros', 'numero_miembros']]
   TIPOS_PROYECTOS = ['ANP', 'Arqueológicos', 'Reservas']
 
   scope :where_regexp, -> (campo, valor) { where("#{campo} REGEXP ?", valor) }
@@ -13,7 +13,7 @@ class Naturalista::Estadistica < ApplicationRecord
     naturalista_estadisticas = Naturalista::Estadistica
     naturalista_estadisticas = naturalista_estadisticas.where_regexp('titulo', titulo) if titulo.present?
     naturalista_estadisticas = naturalista_estadisticas.where_regexp('ubicacion', ubicacion) if ubicacion.present?
-    naturalista_estadisticas = naturalista_estadisticas.order("#{orden} DESC") if orden.present?
+    naturalista_estadisticas.order("#{orden} DESC") if orden.present?
   end
 
   def self.actualizaProyectos

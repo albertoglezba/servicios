@@ -71,9 +71,15 @@ class Naturalista::EstadisticasController < ApplicationController
 
   # GET /naturalista/estadisticas/proyectos
   def proyectos
-    @naturalista_estadistica = Naturalista::Estadistica.new
-    @naturalista_estadistica.orden = 'numero_observaciones'
-    @naturalista_estadisticas = Naturalista::Estadistica.all.order(numero_observaciones: :desc)
+    # Request cuando cambia un input o select
+    if params[:authenticity_token].present?
+      @naturalista_estadistica = Naturalista::Estadistica.new(naturalista_estadistica_params)
+    else
+      @naturalista_estadistica = Naturalista::Estadistica.new
+      @naturalista_estadistica.orden = 'numero_observaciones'
+    end
+
+    @naturalista_estadisticas = @naturalista_estadistica.busqueda
   end
 
   private

@@ -41,7 +41,20 @@
 
 <script id="serviciosjs">
   $('#proyectos-form').on('change', 'input, select', function(){
-
-      console.log($('#proyectos-form').submit());
+      $.ajax({
+          type:'GET',
+          isLocal: true,
+          async: false,
+          crossDomain: true,
+          url:'http://calonso.conabio.gob.mx:7000/naturalista/estadisticas/proyectos',
+          data: $('#proyectos-form').serialize(),
+          success: function(html){
+              if (html != '')
+                  $('#project_stats').empty().html(html);
+          },
+          fail: function(){
+              $('#project_stats').empty().html('Hubo un error en la carga de los datos. Por favor inténtalo de nuevo.');
+          }
+      });
   });
 </script>
