@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :tipo_proyecto %>
-    <%= form.select :tipo_proyecto, Naturalista::Estadistica::TIPOS_PROYECTOS.sort, include_blank: true, id: :naturalista_estadistica_tipo_proyecto %>
+    <%= form.select :tipo_proyecto, Naturalista::Estadistica::TIPOS_PROYECTOS.sort, { selected: naturalista_estadistica.tipo_proyecto.present? ? naturalista_estadistica.tipo_proyecto.split(','): [] }, { multiple: true, id: :naturalista_estadistica_tipo_proyecto } %>
   </div>
 
   <div class="field">
@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :ubicacion %>
-    <%= form.text_field :ubicacion, id: :naturalista_estadistica_tipo_lugar %>
+    <%= form.text_field :ubicacion, id: :naturalista_estadistica_ubicacion %>
   </div>
 
   <div class="field">

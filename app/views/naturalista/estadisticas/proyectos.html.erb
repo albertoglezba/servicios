@@ -1,6 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<h4>NOTA: los datos son actualizados cada tercer día a apartir de las 00:00 hrs.</h4>
+<h4>NOTA: Los datos son actualizados cada lunes a partir de las 00:00 hrs.</h4>
 <h2 id="conteo-proyectos"><%= @naturalista_estadisticas.length %> proyectos</h2>
 
 <%= form_with(model: @naturalista_estadistica, id: 'proyectos-form') do |form| %>
@@ -11,7 +11,7 @@
       <th>Ordena por <%= form.select :orden, Naturalista::Estadistica::ORDEN, include_blank: true %></th>
       <th><%= form.text_field :titulo, placeholder: 'Proyecto', class: 'form-control' %></th>
       <th>Tipo de proyecto <%= form.select :tipo_proyecto, Naturalista::Estadistica::TIPOS_PROYECTOS.sort, include_blank: true, class: 'form-control' %></th>
-      <th>Estado <%= form.select :esatdo, Naturalista::Estadistica::ESTADOS.sort, include_blank: true, class: 'form-control' %></th>
+      <th>Estado <%= form.select :estado, Naturalista::Estadistica::ESTADOS.sort, include_blank: true, class: 'form-control' %></th>
       <th><%= form.text_field :ubicacion, placeholder: 'Ubicación', class: 'form-control' %></th>
       <th># observaciones</th>
       <th># especies</th>
@@ -35,7 +35,7 @@
             isLocal: false,
             async: false,
             crossDomain: true,
-            url:'https://servicios.conabio.gob.mx/naturalista/estadisticas/proyectos',
+            url: 'https://servicios.conabio.gob.mx/naturalista/estadisticas/proyectos',
             data: $('#proyectos-form').serialize(),
             success: function(html){
                 $('#datos-proyectos').empty().html(html);

@@ -14,7 +14,7 @@ class Naturalista::Estadistica < ApplicationRecord
     naturalista_estadisticas = Naturalista::Estadistica
     naturalista_estadisticas = naturalista_estadisticas.where_like('titulo', titulo) if titulo.present?
     naturalista_estadisticas = naturalista_estadisticas.where_like('ubicacion', ubicacion) if ubicacion.present?
-    naturalista_estadisticas = naturalista_estadisticas.where(tipo_proyecto: tipo_proyecto) if tipo_proyecto.present?
+    naturalista_estadisticas = naturalista_estadisticas.where_like('tipo_proyecto', tipo_proyecto) if tipo_proyecto.present?
     naturalista_estadisticas = naturalista_estadisticas.where(estado: estado) if estado.present?
     naturalista_estadisticas.order("#{orden} DESC") if orden.present?
   end
