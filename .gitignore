@@ -27,3 +27,4 @@
 
 /.idea
 db/sqlite/
+config/initializers/servicios_config.rb

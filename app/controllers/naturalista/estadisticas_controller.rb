@@ -1,4 +1,5 @@
 class Naturalista::EstadisticasController < ApplicationController
+
   before_action :authenticate, except: [:proyectos]
   before_action :set_naturalista_estadistica, only: [:show, :edit, :update, :destroy]
   layout false, only: [:proyectos]
@@ -100,10 +101,10 @@ class Naturalista::EstadisticasController < ApplicationController
       params.require(:naturalista_estadistica).permit(:titulo, :icono, :descripcion, :lugar_id, :numero_especies, :numero_observaciones, :numero_observadores, :numero_identificadores, :numero_miembros, :estado, :ubicacion, :orden, :tipo_proyecto)
     end
 
-  # Limita la aplicacion a un usuario y contrasenia general
+  # Limita la aplicacion a un usuario y contrasenia
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      username == CONFIG.username.to_s && password == CONFIG.password.to_s
+      username == Servicios::Application.config.usuario_estadisticas && password == Servicios::Application.config.password_estadisticas
     end
   end
 

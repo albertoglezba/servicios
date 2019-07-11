@@ -1,0 +1,4 @@
+Servicios::Application.configure do
+  config.usuario_estadisticas = ''
+  config.password_estadisticas = ''
+end
