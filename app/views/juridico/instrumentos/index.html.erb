@@ -1,15 +1,14 @@
 <table id='instrumentosJuridicos' class="table table-responsive table-striped table-hover">
   <thead>
     <tr>
-      <th>Identificador</th>
+      <th>Registro</th>
       <th>Grupo</th>
-      <th>Tipo instrumento legal</th>
+      <th>Instrumento legal</th>
       <th>Objeto</th>
       <th>Monto total</th>
       <!--th>Version pública</th-->
       <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Dato persona área institución</th>
+      <th>Institución</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,10 +20,9 @@
         <td><%= instrumento.Grupo %></td>
         <td><%= instrumento.TipoInstrumentoLegal %></td>
         <td><%= instrumento.Objeto %></td>
-        <td><%= number_to_currency(instrumento.MontoTotal) %></td>
+        <td><%= instrumento.MontoTotal.present? ? number_to_currency(instrumento.MontoTotal).to_s[0..-4] : 'N/A' %></td>
         <!--td><%#= instrumento.VersionPublica %></td-->
-        <td><%= instrumento.Nombre %></td>
-        <td><%= instrumento.Apellido %></td>
+        <td><%= "#{instrumento.Nombre} #{instrumento.Apellido}" %></td>
         <td><%= instrumento.DatoPersonaAreaInstutucion %></td>
       </tr>
     <% end %>

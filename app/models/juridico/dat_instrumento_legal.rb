@@ -11,7 +11,7 @@ class Juridico::DatInstrumentoLegal < Instrumentos
   has_many :Cat_GrupoInstrumentoLegal, through: :Cat_TipoIntrumentoLegal, source: :Cat_GrupoInstrumentoLegal
   has_many :Cat_instituciones, through: :tmpObjetoPAI, source: :Cat_instituciones
   
-  scope :consulta, -> {select('Dat_InstrumentoLegal.Identificador1
+  scope :consulta, -> { select('Dat_InstrumentoLegal.Identificador1
 , Cat_GrupoInstrumentoLegal.Grupo
 , Cat_TipoIntrumentoLegal.TipoInstrumentoLegal
 , Dat_InstrumentoLegal.Objeto
@@ -19,6 +19,6 @@ class Juridico::DatInstrumentoLegal < Instrumentos
 , Dat_InstrumentoLegal.VersionPublica
 , `#tmpObjetoPAI`.Nombre
 , `#tmpObjetoPAI`.Apellido
-, `#tmpObjetoPAI`.DatoPersonaAreaInstutucion').from('Dat_InstrumentoLegal').joins(:Cat_AreasCONABIO, :Cat_GrupoInstrumentoLegal, :Cat_instituciones).where('Cat_Instituciones.IdInstitucionAsc Not In (1622,2927)').where('Year(`FechaFirma`) In (2018,2019)').order(:Identificador1) }
+, `#tmpObjetoPAI`.DatoPersonaAreaInstutucion').from('Dat_InstrumentoLegal').joins(:Cat_AreasCONABIO, :Cat_GrupoInstrumentoLegal, :Cat_instituciones).where('Cat_Instituciones.IdInstitucionAsc Not In (1622,2927)').where('Year(`FechaFirma`) In (2018,2019)').where('`#tmpObjetoPAI`.publico=1').order(Identificador1: :desc) }
 
 end
