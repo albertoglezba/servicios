@@ -3,7 +3,8 @@ class Naturalista::Estadistica < ApplicationRecord
   POR_PAGINA = 300.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
   ORDEN = [['Número de observaciones', 'numero_observaciones'],['Número de especies', 'numero_especies'],['Número de observadores', 'numero_observadores'],['Número de identificadores', 'numero_identificadores'],['Número de miembros', 'numero_miembros']]
-  TIPOS_PROYECTOS = ['ANP', 'Arqueológicos', 'Reservas']
+  TIPOS_PROYECTOS = ['ANP', 'Zonas arqueológicas', 'Reservas']
+  ESTADOS = ['Aguascalientes','Ciudad de México','Durango','Jalisco','Guerrero','Veracruz','Colima','Tabasco','Baja California','Baja California Sur','Oaxaca','Zacatecas','Campeche','Chiapas','Chihuahua','Michoacán','Nayarit','Hidalgo','Guanajuato','San Luis Potosí','Sonora','Sinaloa','Yucatán','Tlaxcala','Coahuila','Morelos','Estado de México','Nuevo León','Puebla','Querétaro','Quintana Roo','Tamaulipas']
 
   scope :where_like, -> (campo, valor) { where("#{campo} LIKE '%#{valor}%'") }
   attr_accessor :orden
@@ -14,6 +15,7 @@ class Naturalista::Estadistica < ApplicationRecord
     naturalista_estadisticas = naturalista_estadisticas.where_like('titulo', titulo) if titulo.present?
     naturalista_estadisticas = naturalista_estadisticas.where_like('ubicacion', ubicacion) if ubicacion.present?
     naturalista_estadisticas = naturalista_estadisticas.where(tipo_proyecto: tipo_proyecto) if tipo_proyecto.present?
+    naturalista_estadisticas = naturalista_estadisticas.where(estado: estado) if estado.present?
     naturalista_estadisticas.order("#{orden} DESC") if orden.present?
   end
 
@@ -48,7 +50,7 @@ class Naturalista::Estadistica < ApplicationRecord
 
   def actualizaProyecto
     obtenerNumeroObservaciones
-    return if numero_observaciones < MIN_OBS
+    #return if numero_observaciones < MIN_OBS
 
     obtenerInfoProyectos
     obtenerNumeroEspecies

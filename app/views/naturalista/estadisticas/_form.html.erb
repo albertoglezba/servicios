@@ -28,7 +28,12 @@
 
   <div class="field">
     <%= form.label :tipo_proyecto %>
-    <%= form.select :tipo_proyecto, Naturalista::Estadistica::TIPOS_PROYECTOS, include_blank: true, id: :naturalista_estadistica_tipo_proyecto %>
+    <%= form.select :tipo_proyecto, Naturalista::Estadistica::TIPOS_PROYECTOS.sort, include_blank: true, id: :naturalista_estadistica_tipo_proyecto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.select :estado, Naturalista::Estadistica::ESTADOS.sort, include_blank: true, id: :naturalista_estadistica_estado %>
   </div>
 
   <div class="field">

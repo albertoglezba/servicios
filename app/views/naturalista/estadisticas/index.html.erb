@@ -6,8 +6,9 @@
   <thead>
     <tr>
       <th>Título</th>
-      <th>Ubicación</th>
       <th>Tipo proyecto</th>
+      <th>Estado</th>
+      <th>Ubicación</th>
       <th>Número observaciones</th>
       <th>Número especies</th>
       <th colspan="3"></th>
@@ -18,8 +19,9 @@
     <% @naturalista_estadisticas.each do |naturalista_estadistica| %>
       <tr>
         <td><%= naturalista_estadistica.titulo %></td>
-        <td><%= naturalista_estadistica.ubicacion %></td>
         <td><%= naturalista_estadistica.tipo_proyecto %></td>
+        <td><%= naturalista_estadistica.estado %></td>
+        <td><%= naturalista_estadistica.ubicacion %></td>
         <td><%= naturalista_estadistica.numero_observaciones %></td>
         <td><%= naturalista_estadistica.numero_especies %></td>
         <td><%= link_to 'Show', naturalista_estadistica %></td>
