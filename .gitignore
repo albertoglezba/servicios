@@ -26,3 +26,4 @@
 /config/secrets.yml
 
 /.idea
+db/sqlite/
