@@ -1,4 +1,7 @@
 Servicios::Application.configure do
   config.usuario_estadisticas = ''
   config.password_estadisticas = ''
+
+  config.admin_estadisticas_url = '/naturalista/estadisticas'
+  config.estadisticas_proyectos_url = '/naturalista/estadisticas/proyectos'
 end

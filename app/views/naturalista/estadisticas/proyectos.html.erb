@@ -1,6 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<h4>NOTA: Los datos son actualizados cada lunes a partir de las 00:00 hrs.</h4>
+<p>NOTA: Para actualizar el estado o el tipo de proyecto, sigue este <%= link_to 'enlace', Servicios::Application.config.admin_estadisticas_url, target: :_blank %> </p>
 <h2 id="conteo-proyectos"><%= @naturalista_estadisticas.length %> proyectos</h2>
 
 <%= form_with(model: @naturalista_estadistica, id: 'proyectos-form') do |form| %>
@@ -22,20 +22,22 @@
     </thead>
 
     <tbody id="datos-proyectos">
-      <%= render partial: 'proyectos' %>
+    <%= render partial: 'proyectos' %>
     </tbody>
   </table>
 
 <% end %>
 
 <script id="serviciosjs">
+  var esatdisticas_proyectos_url = "<%= Servicios::Application.config.estadisticas_proyectos_url %>";
+
     $('#proyectos-form').on('change', 'input, select', function(){
         $.ajax({
             type:'GET',
             isLocal: false,
             async: false,
             crossDomain: true,
-            url: 'https://servicios.conabio.gob.mx/naturalista/estadisticas/proyectos',
+            url: esatdisticas_proyectos_url,
             data: $('#proyectos-form').serialize(),
             success: function(html){
                 $('#datos-proyectos').empty().html(html);
@@ -47,3 +49,5 @@
         });
     });
 </script>
+
+<h4>NOTA: Los datos son actualizados cada lunes a partir de las 00:00 hrs.</h4>
