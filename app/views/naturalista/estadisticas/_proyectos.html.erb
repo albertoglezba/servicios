@@ -5,10 +5,10 @@
     <td><%= naturalista_estadistica.tipo_proyecto %></td>
     <td><%= naturalista_estadistica.estado %></td>
     <td><%= naturalista_estadistica.ubicacion %></td>
-    <td><%= naturalista_estadistica.numero_observaciones %></td>
-    <td><%= naturalista_estadistica.numero_especies %></td>
-    <td><%= naturalista_estadistica.numero_observadores %></td>
-    <td><%= naturalista_estadistica.numero_identificadores %></td>
-    <td><%= naturalista_estadistica.numero_miembros %></td>
+    <td><%= number_with_delimiter naturalista_estadistica.numero_observaciones %></td>
+    <td><%= number_with_delimiter naturalista_estadistica.numero_especies %></td>
+    <td><%= number_with_delimiter naturalista_estadistica.numero_observadores %></td>
+    <td><%= number_with_delimiter naturalista_estadistica.numero_identificadores %></td>
+    <td><%= number_with_delimiter naturalista_estadistica.numero_miembros %></td>
   </tr>
 <% end %>
