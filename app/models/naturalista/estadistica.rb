@@ -3,7 +3,7 @@ class Naturalista::Estadistica < ApplicationRecord
   POR_PAGINA = 300.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
   ORDEN = [['Número de observaciones', 'numero_observaciones'],['Número de especies', 'numero_especies'],['Número de observadores', 'numero_observadores'],['Número de identificadores', 'numero_identificadores'],['Número de miembros', 'numero_miembros']]
-  TIPOS_PROYECTOS = ['ANP', 'Zonas arqueológicas', 'Reservas']
+  TIPOS_PROYECTOS = {'Tipo de lugar' => ['ANP', 'Parque urbano', 'Zonas arqueológicas'], 'Región' => ['Estatal','Municipal','Nacional'], 'Grupo taxonómico' => %w(Anfibios Aves Bacterias Hongos Invertebrados  Mamíferos Peces Plantas Protoctistas Reptiles)}
   ESTADOS = ['Aguascalientes','Ciudad de México','Durango','Jalisco','Guerrero','Veracruz','Colima','Tabasco','Baja California','Baja California Sur','Oaxaca','Zacatecas','Campeche','Chiapas','Chihuahua','Michoacán','Nayarit','Hidalgo','Guanajuato','San Luis Potosí','Sonora','Sinaloa','Yucatán','Tlaxcala','Coahuila','Morelos','Estado de México','Nuevo León','Puebla','Querétaro','Quintana Roo','Tamaulipas']
 
   scope :where_like, -> (campo, valor) { where("#{campo} LIKE '%#{valor}%'") }
