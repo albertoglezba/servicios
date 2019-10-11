@@ -1,6 +1,6 @@
 class Naturalista::Estadistica < ApplicationRecord
 
-  POR_PAGINA = 300.freeze
+  POR_PAGINA = 30.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
   ORDEN = [['Número de observaciones', 'numero_observaciones'],['Número de especies', 'numero_especies'],['Número de observadores', 'numero_observadores'],['Número de identificadores', 'numero_identificadores'],['Número de miembros', 'numero_miembros']]
   TIPOS_PROYECTOS = {'Tipo de lugar' => ['ANP', 'Parque urbano', 'Zonas arqueológicas'], 'Región' => ['Estatal','Municipal','Nacional'], 'Grupo taxonómico' => %w(Anfibios Aves Bacterias Hongos Invertebrados  Mamíferos Peces Plantas Protoctistas Reptiles)}
@@ -20,13 +20,13 @@ class Naturalista::Estadistica < ApplicationRecord
   end
 
   def self.actualizaProyectos
-    consulta = 'projects?place_id=6793&type=collection&per_page=1&page=1'
+    consulta = 'projects?place_id=6793&per_page=1&page=1'
     jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
     return unless jresp['total_results'].present?
 
     paginas = jresp['total_results']%POR_PAGINA > 0 ? (jresp['total_results']/POR_PAGINA) + 1 : jresp['total_results']/POR_PAGINA
     paginas.times do |i|
-      consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{i+1}&order_by=created&type=collection"
+      consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{i+1}&order_by=created"
       jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
       return unless jresp['total_results'].present?
 
