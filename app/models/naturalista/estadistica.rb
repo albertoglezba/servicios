@@ -31,6 +31,7 @@ class Naturalista::Estadistica < ApplicationRecord
       return unless jresp['total_results'].present?
 
       jresp['results'].each do |p|
+        #next unless p['id'] == 687
         Rails.logger.debug "[DEBUG] - Proyecto ID: #{p['id']}"
 
         begin
@@ -43,6 +44,7 @@ class Naturalista::Estadistica < ApplicationRecord
         end
 
         proyecto.actualizaProyecto
+
       end  # End todos los proyectos por pagina
     end  # End paginado
 
@@ -80,6 +82,7 @@ class Naturalista::Estadistica < ApplicationRecord
     self.icono = proyecto['icon']
     self.descripcion = proyecto['description']
     self.lugar_id = proyecto['place_id']
+    self.clase_proyecto = proyecto['project_type']
     self.created_at = proyecto['created_at']
     self.updated_at = proyecto['updated_at']
   end
@@ -93,7 +96,7 @@ class Naturalista::Estadistica < ApplicationRecord
   end
 
   def obtenerNumeroObservaciones
-    consulta = "observations?project_id=#{id}"
+    consulta = "observations?project_id=#{id}&per_page=1"
     jresp = consultaNaturalista(consulta)
     return unless jresp['total_results'].present?
 
