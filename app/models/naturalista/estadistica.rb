@@ -11,7 +11,7 @@ class Naturalista::Estadistica < ApplicationRecord
 
   # Hace el query con los propios campos :O
   def busqueda
-    naturalista_estadisticas = Naturalista::Estadistica
+    naturalista_estadisticas = Naturalista::Estadistica.where(publico: true)
     naturalista_estadisticas = naturalista_estadisticas.where_like('titulo', titulo) if titulo.present?
     naturalista_estadisticas = naturalista_estadisticas.where_like('ubicacion', ubicacion) if ubicacion.present?
     naturalista_estadisticas = naturalista_estadisticas.where_like('tipo_proyecto', tipo_proyecto) if tipo_proyecto.present?
