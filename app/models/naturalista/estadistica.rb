@@ -19,6 +19,13 @@ class Naturalista::Estadistica < ApplicationRecord
     naturalista_estadisticas.order("#{orden} DESC") if orden.present?
   end
 
+  def self.actualizaProyectosFallidos
+    Naturalista::Estadistica.where("titulo IS NULL").each do |e|
+      Rails.logger.debug "[DEBUG] - Proyecto ID: #{e.id}"
+      e.actualizaProyecto
+    end
+  end
+
   def self.actualizaProyectos
     consulta = 'projects?place_id=6793&per_page=1&page=1'
     jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
@@ -62,7 +69,6 @@ class Naturalista::Estadistica < ApplicationRecord
     obtenerUbicacion if lugar_id.present?
 
     if changed?
-
       Rails.logger.debug "[DEBUG] - Hubo cambios"
       save
     else
