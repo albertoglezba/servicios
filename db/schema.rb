@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200303193353) do
+ActiveRecord::Schema.define(version: 20200304173038) do
 
   create_table "naturalista_estadisticas", force: :cascade do |t|
     t.string "titulo"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20200303193353) do
     t.datetime "updated_at", null: false
     t.string "ubicacion"
     t.string "clase_proyecto"
+    t.boolean "publico", default: true, null: false
     t.index ["titulo"], name: "index_naturalista_estadisticas_on_titulo"
     t.index ["ubicacion"], name: "index_naturalista_estadisticas_on_ubicacion"
   end
