@@ -1,0 +1,26 @@
+login: &login
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *login
+  database: db/sqlite/development.sqlite3
+
+test:
+  <<: *login
+  database: db/sqlite/test.sqlite3
+
+production:
+  <<: *login
+  database: db/sqlite/production.sqlite3
+
+instrumentos:
+  adapter: mysql2
+  pool: 5
+  username: 
+  password: 
+  database: 
+  host: 
+  port: 3306
+  timeout: 500
