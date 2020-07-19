@@ -55,6 +55,7 @@ class Naturalista::Estadistica < ApplicationRecord
     obtenerInfoProyectos
     obtenerNumeroEspecies
     obtenerNumeroObservadores
+    sleep(3)  # Para evitar que nos bannen otra vez
     obtenerNumeroIdentificadores
     obtenerNumeroMiembros
     obtenerUbicacion if lugar_id.present?
@@ -66,7 +67,7 @@ class Naturalista::Estadistica < ApplicationRecord
       Rails.logger.debug "[DEBUG] - Sin cambios"
     end
 
-    sleep(5)  # Para evitar que nos bannen otra vez
+    sleep(3)  # Para evitar que nos bannen otra vez
   end
 
   def obtenerInfoProyectos
