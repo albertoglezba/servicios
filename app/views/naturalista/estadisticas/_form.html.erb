@@ -27,6 +27,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :publico %>
+    <%= form.check_box :publico %>
+  </div>
+
+  <div class="field">
     <%= form.label :tipo_proyecto %>
     <%= form.select :tipo_proyecto, Naturalista::Estadistica::TIPOS_PROYECTOS, { include_blank: true, selected: naturalista_estadistica.tipo_proyecto.present? ? naturalista_estadistica.tipo_proyecto.split(','): [] }, { multiple: true, id: :naturalista_estadistica_tipo_proyecto } %>
     <br /><small>Para seleccionar mas de una opción manten presionada la tecla <code>Ctrl</code></small>
@@ -34,7 +39,7 @@
 
   <div class="field">
     <%= form.label :estado %>
-    <%= form.select :estado, Naturalista::Estadistica::ESTADOS.sort, include_blank: true, id: :naturalista_estadistica_estado %>
+    <%= form.select :estado, Naturalista::Estadistica::ESTADOS.values.sort, include_blank: true, id: :naturalista_estadistica_estado %>
   </div>
 
   <div class="field">
