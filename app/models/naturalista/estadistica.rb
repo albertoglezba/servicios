@@ -1,6 +1,6 @@
 class Naturalista::Estadistica < ApplicationRecord
 
-  POR_PAGINA = 30.freeze
+  POR_PAGINA = 200.freeze
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
   ORDEN = [['Número de observaciones', 'numero_observaciones'],['Número de especies', 'numero_especies'],['Número de observadores', 'numero_observadores'],['Número de identificadores', 'numero_identificadores'],['Número de miembros', 'numero_miembros']]
   TIPOS_PROYECTOS = {'Tipo de lugar' => ['ANP', 'Parque urbano', 'Zonas arqueológicas'], 'Región' => ['Estatal','Municipal','Nacional'], 'Grupo taxonómico' => %w(Anfibios Aves Bacterias Hongos Invertebrados Mamíferos Peces Plantas Protoctistas Reptiles)}
@@ -26,14 +26,21 @@ class Naturalista::Estadistica < ApplicationRecord
     end
   end
 
-  def self.actualizaProyectos
-    consulta = 'projects?place_id=6793&per_page=1&page=1'
-    jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
-    return unless jresp['total_results'].present?
+  def self.actualizaProyectos(opc={})
+    # Para iterar todas
+    #consulta = 'projects?place_id=6793&per_page=1&page=1'
+    #jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
+    #return unless jresp['total_results'].present?
+    #paginas = jresp['total_results']%POR_PAGINA > 0 ? (jresp['total_results']/POR_PAGINA) + 1 : jresp['total_results']/POR_PAGINA
 
-    paginas = jresp['total_results']%POR_PAGINA > 0 ? (jresp['total_results']/POR_PAGINA) + 1 : jresp['total_results']/POR_PAGINA
-    paginas.times do |i|
-      consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{i+1}&order_by=created"
+    #paginas.times do |i|
+      #consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{i+1}&order_by=created"
+
+    # Si se corre el proceso desde un inicio poner false actualizo  
+    Naturalista::Estadistica.update_all(actualizo: false) if opc[:paginas].include?(1)
+
+    opc[:paginas].each do |pagina|  # Dejaremos solo 5 paginas por dia para no llegar a los 10k request por dia y evitar el bloqueo
+      consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{pagina}&order_by=created"
       jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
       return unless jresp['total_results'].present?
 
@@ -58,10 +65,9 @@ class Naturalista::Estadistica < ApplicationRecord
   end
 
   def actualizaProyecto
+    obtenerInfoProyectos
     obtenerNumeroObservaciones
     #return if numero_observaciones < MIN_OBS
-
-    obtenerInfoProyectos
     obtenerNumeroEspecies
     obtenerNumeroObservadores
     sleep(3)  # Para evitar que nos bannen otra vez
@@ -76,7 +82,7 @@ class Naturalista::Estadistica < ApplicationRecord
       Rails.logger.debug "[DEBUG] - Sin cambios"
     end
 
-    sleep(3)  # Para evitar que nos bannen otra vez
+    sleep(2)  # Para evitar que nos bannen otra vez
   end
 
   def obtenerInfoProyectos
@@ -91,6 +97,7 @@ class Naturalista::Estadistica < ApplicationRecord
     self.descripcion = proyecto['description']
     self.lugar_id = proyecto['place_id']
     self.clase_proyecto = proyecto['project_type']
+    self.actualizo = true
     self.created_at = proyecto['created_at']
     self.updated_at = proyecto['updated_at']
   end
