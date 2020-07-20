@@ -1,6 +1,6 @@
 class Naturalista::Estadistica < ApplicationRecord
 
-  POR_PAGINA = 200.freeze
+  POR_PAGINA = 30.freeze  # No mover esta variable, hay un bug en el API con mas de 30 resultados >.>!
   MIN_OBS = 50  # El minimo de observaciones para que el proyecto lo guardemos
   ORDEN = [['Número de observaciones', 'numero_observaciones'],['Número de especies', 'numero_especies'],['Número de observadores', 'numero_observadores'],['Número de identificadores', 'numero_identificadores'],['Número de miembros', 'numero_miembros']]
   TIPOS_PROYECTOS = {'Tipo de lugar' => ['ANP', 'Parque urbano', 'Zonas arqueológicas'], 'Región' => ['Estatal','Municipal','Nacional'], 'Grupo taxonómico' => %w(Anfibios Aves Bacterias Hongos Invertebrados Mamíferos Peces Plantas Protoctistas Reptiles)}
@@ -39,14 +39,14 @@ class Naturalista::Estadistica < ApplicationRecord
     # Si se corre el proceso desde un inicio poner false actualizo  
     Naturalista::Estadistica.update_all(actualizo: false) if opc[:paginas].include?(1)
 
-    opc[:paginas].each do |pagina|  # Dejaremos solo 5 paginas por dia para no llegar a los 10k request por dia y evitar el bloqueo
+    opc[:paginas].each do |pagina|  # Dejaremos solo 32 paginas por dia para no llegar a los 10k request por dia y evitar el bloqueo
       consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{pagina}&order_by=created"
       jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
       return unless jresp['total_results'].present?
 
       jresp['results'].each do |p|
         #next unless p['id'] == 687
-        Rails.logger.debug "[DEBUG] - Proyecto ID: #{p['id']}"
+        Rails.logger.debug "[DEBUG] - Proyecto ID: #{p['id']} - pagina: #{pagina}"
 
         begin
           proyecto = Naturalista::Estadistica.find(p['id'])
@@ -57,7 +57,12 @@ class Naturalista::Estadistica < ApplicationRecord
           Rails.logger.debug "[DEBUG] - Proyecto nuevo"
         end
 
-        proyecto.actualizaProyecto
+        if proyecto.actualizo
+          Rails.logger.debug "[DEBUG] - Ya lo habia actualizado"
+          next
+        else
+          proyecto.actualizaProyecto
+        end
 
       end  # End todos los proyectos por pagina
     end  # End paginado
