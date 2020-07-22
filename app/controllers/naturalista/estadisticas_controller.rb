@@ -74,12 +74,12 @@ class Naturalista::EstadisticasController < ApplicationController
     # Request cuando cambia un input o select
     if params[:authenticity_token].present?
       @naturalista_estadistica = Naturalista::Estadistica.new(naturalista_estadistica_params)
-      @naturalista_estadisticas = @naturalista_estadistica.busqueda
+      @naturalista_estadistica.busqueda
       render partial: 'proyectos'
     else
       @naturalista_estadistica = Naturalista::Estadistica.new
       @naturalista_estadistica.orden = 'numero_observaciones'
-      @naturalista_estadisticas = @naturalista_estadistica.busqueda
+      @naturalista_estadistica.busqueda
     end
   end
 
@@ -97,7 +97,7 @@ class Naturalista::EstadisticasController < ApplicationController
         params[:naturalista_estadistica][:tipo_proyecto] = params[:naturalista_estadistica][:tipo_proyecto].reject { |c| c.empty? }.join(',')
       end
 
-      params.require(:naturalista_estadistica).permit(:titulo, :icono, :descripcion, :lugar_id, :numero_especies, :numero_observaciones, :numero_observadores, :numero_identificadores, :numero_miembros, :estado, :ubicacion, :orden, :tipo_proyecto, :publico)
+      params.require(:naturalista_estadistica).permit(:titulo, :icono, :descripcion, :lugar_id, :numero_especies, :numero_observaciones, :numero_observadores, :numero_identificadores, :numero_miembros, :estado, :ubicacion, :orden, :tipo_proyecto, :publico, :pagina)
     end
 
   # Limita la aplicacion a un usuario y contrasenia

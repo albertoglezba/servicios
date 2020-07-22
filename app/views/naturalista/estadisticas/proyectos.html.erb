@@ -1,7 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <p>NOTA: Para actualizar el estado o el tipo de proyecto, sigue este <%= link_to 'enlace', Servicios::Application.config.admin_estadisticas_url, target: :_blank %> </p>
-<h2 id="conteo-proyectos"><%= @naturalista_estadisticas.length %> proyectos</h2>
+<h2 id="conteo-proyectos"><%= @naturalista_estadistica.totales %> proyectos</h2>
 
 <%= form_with(model: @naturalista_estadistica, id: 'proyectos-form') do |form| %>
 
@@ -26,28 +26,49 @@
     </tbody>
   </table>
 
+  <%= form.hidden_field :pagina, id: 'pagina' %>
+
 <% end %>
 
 <script id="serviciosjs">
-  var esatdisticas_proyectos_url = "<%= Servicios::Application.config.estadisticas_proyectos_url %>";
+  esatdisticas_proyectos_url = "<%= Servicios::Application.config.estadisticas_proyectos_url %>";
+  pagina = 1
 
-    $('#proyectos-form').on('change', 'input, select', function(){
-        $.ajax({
-            type:'GET',
-            isLocal: false,
-            async: false,
-            crossDomain: true,
-            url: esatdisticas_proyectos_url,
-            data: $('#proyectos-form').serialize(),
-            success: function(html){
-                $('#datos-proyectos').empty().html(html);
-                $('#conteo-proyectos').html($('#datos-proyectos tr').length + ' proyectos')
-            },
-            fail: function(){
-                $('#datos-proyectos').empty().html('<td>Hubo un error en los datos.</td>');
-            }
-        });
-    });
+  function proyectos_ajax(tipo)
+  {
+      $.ajax({
+          type:'GET',
+          isLocal: false,
+          async: false,
+          crossDomain: true,
+          url: esatdisticas_proyectos_url,
+          data: $('#proyectos-form').serialize(),
+          success: function(html){
+            if (tipo == 'campos')
+              $('#datos-proyectos').empty().html(html);
+            else
+              $('#datos-proyectos').append(html);
+            
+          },
+          fail: function(){
+              $('#datos-proyectos').empty().html('<td>Hubo un error en los datos.</td>');
+          }
+      });
+  }
+
+  $('#proyectos-form').on('change', 'input, select', function(){
+    pagina = 1;
+    $('#pagina').val(pagina);
+    proyectos_ajax('campos');
+  });
+
+  window.onscroll = function(ev) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      pagina = pagina + 1;
+      $('#pagina').val(pagina);
+      proyectos_ajax('paginado');
+    }
+};
 </script>
 
 <h4>NOTA: Los datos son actualizados cada lunes a partir de las 00:00 hrs.</h4>

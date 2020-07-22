@@ -7,7 +7,7 @@ class Naturalista::Estadistica < ApplicationRecord
   ESTADOS = { 11163 => 'Aguascalientes', 59014 => 'Ciudad de México', 11166 => 'Durango', 7411 => 'Jalisco', 9741 => 'Guerrero', 13117 => 'Veracruz', 7255 => 'Colima', 7450 => 'Tabasco', 8501 => 'Baja California', 7403 => 'Baja California Sur', 8295 => 'Oaxaca', 7447 => 'Zacatecas',7434 => 'Campeche', 97003 => 'Chiapas', 11165 => 'Chihuahua', 67520 => 'Michoacán', 8498 => 'Nayarit', 11167 => 'Hidalgo', 8150 => 'Guanajuato',58810 => 'San Luis Potosí', 6794 => 'Sonora', 7187 => 'Sinaloa', 67478 => 'Yucatán', 11172 => 'Tlaxcala', 6935 => 'Coahuila', 7430 => 'Morelos',11168 => 'Estado de México', 11169 => 'Nuevo León', 7404 => 'Puebla', 67136 => 'Querétaro', 7426 => 'Quintana Roo', 7443 => 'Tamaulipas'}
 
   scope :where_like, -> (campo, valor) { where("#{campo} LIKE '%#{valor}%'") }
-  attr_accessor :orden
+  attr_accessor :orden, :pagina, :totales, :datos
 
   # Hace el query con los propios campos :O
   def busqueda
@@ -16,7 +16,15 @@ class Naturalista::Estadistica < ApplicationRecord
     naturalista_estadisticas = naturalista_estadisticas.where_like('ubicacion', ubicacion) if ubicacion.present?
     naturalista_estadisticas = naturalista_estadisticas.where_like('tipo_proyecto', tipo_proyecto) if tipo_proyecto.present?
     naturalista_estadisticas = naturalista_estadisticas.where(estado: estado) if estado.present?
-    naturalista_estadisticas.order("#{orden} DESC") if orden.present?
+
+    self.totales = naturalista_estadisticas.count
+    naturalista_estadisticas = naturalista_estadisticas.order("#{orden} DESC") if orden.present?
+
+    # Paginado
+    self.pagina = pagina || 1
+    self.pagina = pagina.to_i
+    naturalista_estadisticas = naturalista_estadisticas.limit(POR_PAGINA).offset(POR_PAGINA*(pagina-1))
+    self.datos = naturalista_estadisticas
   end
 
   def self.actualizaProyectosFallidos

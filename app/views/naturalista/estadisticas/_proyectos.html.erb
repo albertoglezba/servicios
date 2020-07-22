@@ -1,4 +1,4 @@
-<% @naturalista_estadisticas.each do |naturalista_estadistica| %>
+<% @naturalista_estadistica.datos.each do |naturalista_estadistica| %>
   <tr>
     <td><%= naturalista_estadistica.icono.present? ? image_tag(naturalista_estadistica.icono) : '' %></td>
     <td><%= link_to naturalista_estadistica.titulo, "https://www.naturalista.mx/projects/#{naturalista_estadistica.id}", target: :_blank %></td>
