@@ -64,7 +64,7 @@
 
   window.onscroll = function(ev) {
 
-    if ((window.innerHeight + window.scrollY) >= $('#projec_stats').offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= $('#project_stats')[0].offsetHeight) {
       pagina = pagina + 1;
       $('#pagina').val(pagina);
       proyectos_ajax('paginado');
