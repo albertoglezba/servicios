@@ -63,12 +63,13 @@
   });
 
   window.onscroll = function(ev) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+
+    if ((window.innerHeight + window.scrollY) >= $('#projec_stats').offsetHeight) {
       pagina = pagina + 1;
       $('#pagina').val(pagina);
       proyectos_ajax('paginado');
     }
-};
+  };
 </script>
 
 <h4>NOTA: Los datos son actualizados cada lunes a partir de las 00:00 hrs.</h4>
