@@ -35,18 +35,10 @@ class Naturalista::Estadistica < ApplicationRecord
   end
 
   def self.actualizaProyectos(opc={})
-    # Para iterar todas
-    #consulta = 'projects?place_id=6793&per_page=1&page=1'
-    #jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
-    #return unless jresp['total_results'].present?
-    #paginas = jresp['total_results']%POR_PAGINA > 0 ? (jresp['total_results']/POR_PAGINA) + 1 : jresp['total_results']/POR_PAGINA
+    # Si se corre el proceso desde un inicio poner false actualizo
 
-    #paginas.times do |i|
-      #consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{i+1}&order_by=created"
-
-    # Si se corre el proceso desde un inicio poner false actualizo  
     Naturalista::Estadistica.update_all(actualizo: false) if opc[:paginas].include?(1)
-
+    
     opc[:paginas].each do |pagina|  # Dejaremos solo 32 paginas por dia para no llegar a los 10k request por dia y evitar el bloqueo
       consulta = "projects?place_id=6793&per_page=#{POR_PAGINA}&page=#{pagina}&order_by=created"
       jresp = Naturalista::Estadistica.new.consultaNaturalista(consulta)
@@ -59,17 +51,19 @@ class Naturalista::Estadistica < ApplicationRecord
         begin
           proyecto = Naturalista::Estadistica.find(p['id'])
           Rails.logger.debug "[DEBUG] - Proyecto existente"
+
+          if proyecto.actualizo
+            Rails.logger.debug "[DEBUG] - Ya lo habia actualizado"
+          else
+            proyecto.actualizaProyecto
+            Rails.logger.debug "[DEBUG] - Actualizo el proyecto"
+          end
+
         rescue
           proyecto = Naturalista::Estadistica.new
           proyecto.id = p['id'].to_i
-          Rails.logger.debug "[DEBUG] - Proyecto nuevo"
-        end
-
-        if proyecto.actualizo
-          Rails.logger.debug "[DEBUG] - Ya lo habia actualizado"
-          next
-        else
           proyecto.actualizaProyecto
+          Rails.logger.debug "[DEBUG] - Proyecto nuevo"
         end
 
       end  # End todos los proyectos por pagina
@@ -80,6 +74,7 @@ class Naturalista::Estadistica < ApplicationRecord
   def actualizaProyecto
     obtenerInfoProyectos
     obtenerNumeroObservaciones
+    sleep(3)
     #return if numero_observaciones < MIN_OBS
     obtenerNumeroEspecies
     obtenerNumeroObservadores
