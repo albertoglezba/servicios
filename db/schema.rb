@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230608181853) do
+ActiveRecord::Schema.define(version: 20230613005053) do
 
   create_table "eventos", force: :cascade do |t|
-    t.string "titulo"
-    t.string "actividad"
+    t.string "titulo", null: false
+    t.string "actividad", null: false
     t.string "otra_actividad"
-    t.text "descripcion"
-    t.datetime "fecha_ini"
-    t.datetime "fecha_fin"
-    t.string "publico_meta"
-    t.string "formato"
-    t.string "estado"
-    t.string "informes"
-    t.boolean "celebracion"
-    t.string "usuario"
+    t.text "descripcion", null: false
+    t.datetime "fecha_ini", null: false
+    t.datetime "fecha_fin", null: false
+    t.string "publico_meta", null: false
+    t.string "formato", null: false
+    t.string "estado", null: false
+    t.string "informes", null: false
+    t.boolean "celebracion", default: false, null: false
+    t.string "usuario", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
