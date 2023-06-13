@@ -30,3 +30,4 @@ db/sqlite/
 config/initializers/servicios_config.rb
 
 .ruby-version
+log_contrab.txt

@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200719064313) do
+ActiveRecord::Schema.define(version: 20230608181853) do
+
+  create_table "eventos", force: :cascade do |t|
+    t.string "titulo"
+    t.string "actividad"
+    t.string "otra_actividad"
+    t.text "descripcion"
+    t.datetime "fecha_ini"
+    t.datetime "fecha_fin"
+    t.string "publico_meta"
+    t.string "formato"
+    t.string "estado"
+    t.string "informes"
+    t.boolean "celebracion"
+    t.string "usuario"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "naturalista_estadisticas", force: :cascade do |t|
     t.string "titulo"

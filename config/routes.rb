@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :eventos
+  
   namespace :naturalista do
     resources :estadisticas do
       collection do
