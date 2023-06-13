@@ -1,6 +1,7 @@
 class EventosController < ApplicationController
   before_action :authenticate_eventos, except: [:index]
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
+  before_action :tiene_permisos?, only: [:show, :edit, :update, :destroy]
 
   # GET /eventos
   # GET /eventos.json
@@ -25,7 +26,12 @@ class EventosController < ApplicationController
   # POST /eventos
   # POST /eventos.json
   def create
+    if @usuario.blank? 
+      raise ActionController::RoutingError, 'Not Found'
+    end
+
     @evento = Evento.new(evento_params)
+    @evento.usuario = @usuario  # Asigna el usuario
 
     respond_to do |format|
       if @evento.save
@@ -70,6 +76,11 @@ class EventosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evento_params
-      params.require(:evento).permit(:titulo, :actividad, :otra_actividad, :descripcion, :fecha_ini, :fecha_fin, :publico_meta, :formato, :estado, :informes, :celebracion, :usuario)
+      params.require(:evento).permit(:titulo, :actividad, :otra_actividad, :descripcion, :fecha_ini, :fecha_fin, :publico_meta, :formato, :estado, :informes, :celebracion)
+    end
+
+    def tiene_permisos?
+      return true if @evento.usuario == @usuario
+      raise ActionController::RoutingError, 'Not Found'
     end
 end
