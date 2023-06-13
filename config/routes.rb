@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :eventos
-  
+  resources :eventos do
+    collection do
+      get 'mis_eventos'
+    end
+  end
+
   namespace :naturalista do
     resources :estadisticas do
       collection do

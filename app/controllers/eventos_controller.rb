@@ -9,6 +9,10 @@ class EventosController < ApplicationController
     @eventos = Evento.all.order(fecha_ini: :desc)
   end
 
+  def mis_eventos
+    @eventos = Evento.where(usuario: @usuario).order(fecha_ini: :desc)
+  end
+
   # GET /eventos/1
   # GET /eventos/1.json
   def show
@@ -26,10 +30,6 @@ class EventosController < ApplicationController
   # POST /eventos
   # POST /eventos.json
   def create
-    if @usuario.blank? 
-      raise ActionController::RoutingError, 'Not Found'
-    end
-
     @evento = Evento.new(evento_params)
     @evento.usuario = @usuario  # Asigna el usuario
 
@@ -83,4 +83,5 @@ class EventosController < ApplicationController
       return true if @evento.usuario == @usuario
       raise ActionController::RoutingError, 'Not Found'
     end
+
 end
