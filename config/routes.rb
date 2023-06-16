@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  match '*all', controller: 'application', action: 'cors_preflight_check', via: [:options]
+
   resources :eventos do
     collection do
       get 'mis_eventos'

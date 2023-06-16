@@ -1,7 +1,9 @@
 class EventosController < ApplicationController
+  before_action :cors_set_access_control_headers, except: [:index]
   before_action :authenticate_eventos, except: [:index]
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
   before_action :tiene_permisos?, only: [:show, :edit, :update, :destroy]
+  layout false, except: [:index]
 
   # GET /eventos
   # GET /eventos.json
