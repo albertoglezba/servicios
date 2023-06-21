@@ -2,7 +2,7 @@ class EventosController < ApplicationController
   before_action :cors_set_access_control_headers, except: [:index]
   before_action :authenticate_eventos, except: [:index]
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
-  before_action :tiene_permisos?, only: [:show, :edit, :update, :destroy]
+  #before_action :tiene_permisos?, only: [:show, :edit, :update, :destroy]
   layout false, except: [:index]
 
   # GET /eventos
@@ -84,6 +84,10 @@ class EventosController < ApplicationController
     def tiene_permisos?
       return true if @evento.usuario == @usuario
       raise ActionController::RoutingError, 'Not Found'
+    end
+
+    def authenticate_eventos
+      authenticate(:eventos)
     end
 
 end
