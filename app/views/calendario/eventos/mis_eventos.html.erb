@@ -37,7 +37,7 @@
         <td><%= evento.celebracion %></td>
         <td><%= evento.usuario %></td>
         <td><%= link_to 'Show', evento %></td>
-        <td><%= link_to 'Edit', edit_evento_path(evento) %></td>
+        <td><%= link_to 'Edit', edit_calendario_evento_path(evento) %></td>
         <td><%= link_to 'Destroy', evento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -46,4 +46,4 @@
 
 <br>
 
-<%= link_to 'New Evento', new_evento_path %>
+<%= link_to 'New Evento', new_calendario_evento_path %>

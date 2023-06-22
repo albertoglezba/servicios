@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :actividad, "Actividad *" %>
-    <%= form.select :actividad, options_for_select(Evento::ACTIVIDAD), {prompt: "- - - Selecciona - - -"}, id: :evento_actividad, class: "form-control" %>
+    <%= form.select :actividad, options_for_select(Calendario::Evento::ACTIVIDAD), {prompt: "- - - Selecciona - - -"}, id: :evento_actividad, class: "form-control" %>
   </div>
 
   <div class="field">
@@ -48,17 +48,17 @@
 
   <div class="field">
     <%= form.label :estado, "Estado *" %>
-    <%= form.select :estado, options_for_select(Evento::ESTADO), {prompt: "- - - Selecciona ---"}, id: :evento_estado, class: "form-control" %>
+    <%= form.select :estado, options_for_select(Calendario::Evento::ESTADO), {prompt: "- - - Selecciona ---"}, id: :evento_estado, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :publico_meta, "¿A quién va dirigido? *" %>
-    <%= form.select :publico_meta, options_for_select(Evento::PUBLICO_META), {prompt: "- - - Selecciona ---"}, id: :evento_publico_meta, class: "form-control" %>
+    <%= form.select :publico_meta, options_for_select(Calendario::Evento::PUBLICO_META), {prompt: "- - - Selecciona ---"}, id: :evento_publico_meta, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :formato, "¿Cómo se llevará a cabo el evento? *" %>
-    <%= form.select :formato, options_for_select(Evento::FORMATO), {prompt: "- - - Selecciona ---"}, id: :evento_formato, class: "form-control" %>
+    <%= form.select :formato, options_for_select(Calendario::Evento::FORMATO), {prompt: "- - - Selecciona ---"}, id: :evento_formato, class: "form-control" %>
   </div>
 
   <div class="field">

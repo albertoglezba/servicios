@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   protected
 
 	def authenticate(tipo_usuario)
-		authenticate_or_request_with_http_basic do |username, password|
+	  authenticate_or_request_with_http_basic do |username, password|
       username_password = Rails.application.secrets.usuarios[tipo_usuario][username.to_sym]
       
       if username_password.present? && username_password.to_s == password

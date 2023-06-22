@@ -1,18 +1,19 @@
-class EventosController < ApplicationController
+class Calendario::EventosController < ApplicationController
+
   before_action :cors_set_access_control_headers, except: [:index]
   before_action :authenticate_eventos, except: [:index]
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
-  #before_action :tiene_permisos?, only: [:show, :edit, :update, :destroy]
+  before_action :tiene_permisos?, only: [:show, :edit, :update, :destroy]
   layout false, except: [:index]
 
   # GET /eventos
   # GET /eventos.json
   def index
-    @eventos = Evento.all.order(fecha_ini: :desc)
+    @eventos = Calendario::Evento.all.order(fecha_ini: :desc)
   end
 
   def mis_eventos
-    @eventos = Evento.where(usuario: @usuario).order(fecha_ini: :desc)
+    @eventos = Calendario::Evento.where(usuario: @usuario).order(fecha_ini: :desc)
   end
 
   # GET /eventos/1
@@ -22,7 +23,7 @@ class EventosController < ApplicationController
 
   # GET /eventos/new
   def new
-    @evento = Evento.new
+    @evento = Calendario::Evento.new
   end
 
   # GET /eventos/1/edit
@@ -32,7 +33,7 @@ class EventosController < ApplicationController
   # POST /eventos
   # POST /eventos.json
   def create
-    @evento = Evento.new(evento_params)
+    @evento = Calendario::Evento.new(evento_params)
     @evento.usuario = @usuario  # Asigna el usuario
 
     respond_to do |format|
@@ -65,7 +66,7 @@ class EventosController < ApplicationController
   def destroy
     @evento.destroy
     respond_to do |format|
-      format.html { redirect_to eventos_url, notice: 'Evento was successfully destroyed.' }
+      format.html { redirect_to calendario_eventos_url, notice: 'Evento was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,12 +74,12 @@ class EventosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evento
-      @evento = Evento.find(params[:id])
+      @evento = Calendario::Evento.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evento_params
-      params.require(:evento).permit(:titulo, :actividad, :otra_actividad, :descripcion, :fecha_ini, :fecha_fin, :publico_meta, :formato, :estado, :informes, :celebracion)
+      params.require(:calendario_evento).permit(:titulo, :actividad, :otra_actividad, :descripcion, :fecha_ini, :fecha_fin, :publico_meta, :formato, :estado, :informes, :celebracion)
     end
 
     def tiene_permisos?
