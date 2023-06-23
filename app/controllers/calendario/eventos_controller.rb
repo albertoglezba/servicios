@@ -1,7 +1,7 @@
 class Calendario::EventosController < ApplicationController
 
   before_action :cors_set_access_control_headers, except: [:index]
-  before_action :authenticate_eventos, except: [:index]
+  before_action :authenticate_eventos, except: [:index, :login]
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
   before_action :tiene_permisos?, only: [:show, :edit, :update, :destroy]
   layout false, except: [:index]
@@ -14,6 +14,9 @@ class Calendario::EventosController < ApplicationController
 
   def mis_eventos
     @eventos = Calendario::Evento.where(usuario: @usuario).order(fecha_ini: :desc)
+  end
+
+  def login
   end
 
   # GET /eventos/1

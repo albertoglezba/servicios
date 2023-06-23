@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :eventos do
       collection do
         get 'mis_eventos'
+        get 'login'
       end
     end
   end
