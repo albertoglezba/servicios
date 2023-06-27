@@ -36,9 +36,9 @@
         <td><%= evento.informes %></td>
         <td><%= evento.celebracion %></td>
         <td><%= evento.usuario %></td>
-        <td><%= link_to 'Show', evento %></td>
-        <td><%= link_to 'Edit', edit_calendario_evento_path(evento) %></td>
-        <td><%= link_to 'Destroy', evento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', calendario_evento_url(evento) %></td>
+        <td><%= link_to 'Edit', edit_calendario_evento_url(evento) %></td>
+        <td><%= link_to 'Destroy', calendario_evento_url(evento), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -46,4 +46,4 @@
 
 <br>
 
-<%= link_to 'New Evento', new_calendario_evento_path %>
+<%= link_to 'New Evento', new_calendario_evento_url %>

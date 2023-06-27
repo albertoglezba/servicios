@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def evitaCSFR?
-    action_name == "cors_preflight_check" || (controller_name == "eventos" && action_name == "create")
+    action_name == "cors_preflight_check" || (controller_name == "eventos" && ['create', 'update', 'destroy'].include?(action_name) )
   end
 
 end

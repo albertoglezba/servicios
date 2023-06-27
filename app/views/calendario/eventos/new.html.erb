@@ -1,5 +1,5 @@
-<h1>New Evento</h1>
+<h1>Captura un nuevo evento</h1>
 
-<%= render 'form', evento: @evento %>
+<%= render 'form', evento: @evento, url: calendario_eventos_url %>
 
-<%= link_to 'Back', calendario_eventos_path %>
+<%= link_to 'Back', calendario_eventos_url %>
