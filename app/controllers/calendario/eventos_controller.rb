@@ -13,7 +13,7 @@ class Calendario::EventosController < ApplicationController
   end
 
   def mis_eventos
-    @eventos = Calendario::Evento.where(usuario: @usuario).order(fecha_ini: :desc)
+    @eventos = Calendario::Evento.mis_eventos(@usuario)
   end
 
   def login

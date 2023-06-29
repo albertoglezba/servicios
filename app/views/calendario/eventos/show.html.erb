@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<% if notice.present? %>
+  <div class="alert alert-primary" role="alert" id="notice"><%= notice %></div>
+<% end %>
 <p>
   <strong>Titulo:</strong>
   <%= @evento.titulo %>
@@ -60,5 +61,6 @@
   <%= @evento.usuario %>
 </p>
 
-<%= link_to 'Edit', edit_calendario_evento_url(@evento) %> |
-<%= link_to 'Back', mis_eventos_calendario_eventos_url %>
+
+<%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_calendario_evento_url(@evento), class: 'btn btn-lg btn-link' %>
+<%= link_to '<i class="fa fa-trash"></i>'.html_safe, calendario_evento_url(@evento), method: :delete, data: { confirm: '¿Estas seguro?' }, class: 'btn btn-lg btn-link' %>

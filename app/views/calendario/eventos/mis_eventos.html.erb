@@ -6,43 +6,23 @@
   Eventos de <%= @usuario %> <%= link_to '<i class="fa fa-plus-circle"></i>'.html_safe, new_calendario_evento_url, class: 'btn btn-lg btn-link', title: 'Añadir evento', "data-toggle" => "tooltip", "data-placement" => "bottom"  %>
 </p>
 
-<table class="shadow-lg table table-borderless table-sm table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th>Titulo</th>
-      <th>Actividad</th>
-      <th>Otra actividad</th>
-      <th>Descripcion</th>
-      <th>Fecha ini</th>
-      <th>Fecha fin</th>
-      <th>Publico meta</th>
-      <th>Formato</th>
-      <th>Estado</th>
-      <th>Informes</th>
-      <th>Celebracion</th>
-      <th>acciones</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @eventos.each do |evento| %>
-      <tr>
-        <td><%= evento.titulo %></td>
-        <td><%= evento.actividad %></td>
-        <td><%= evento.otra_actividad %></td>
-        <td><%= evento.descripcion %></td>
-        <td><%= evento.fecha_ini %></td>
-        <td><%= evento.fecha_fin %></td>
-        <td><%= evento.publico_meta %></td>
-        <td><%= evento.formato %></td>
-        <td><%= evento.estado %></td>
-        <td><%= evento.informes %></td>
-        <td><%= evento.celebracion %></td>
-        <td><%= link_to '<i class="fa fa-eye"></i>'.html_safe, calendario_evento_url(evento), class: 'btn btn-lg btn-link' %>
-          <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_calendario_evento_url(evento), class: 'btn btn-lg btn-link' %>
-          <%= link_to '<i class="fa fa-trash"></i>'.html_safe, calendario_evento_url(evento), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-lg btn-link' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="row">
+  <div class="col-6">
+    <div class="list-group" id="list-tab" role="tablist">
+      <% @eventos.each do |evento| %>
+        <a class="list-group-item list-group-item-action list-eventos shadow-sm" id="list-evento-<%= evento.id %>-list" href="<%= calendario_evento_url(evento) %>">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><%= evento.titulo %></h5>
+            <small><%= evento.fecha_ini.strftime('%d/%m/%y') %> </small>
+          </div>
+          <p class="mb-1"><%= evento.actividad %></p>
+          <small><%= evento.estado%></small>
+        </a>
+      <% end %>
+    </div>
+  </div>
+  <div class="col">
+    <div class="tab-content p-4" id="evento-content"></div>
+  </div>
+</div>

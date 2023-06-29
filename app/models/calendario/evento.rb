@@ -6,5 +6,7 @@ class Calendario::Evento < ApplicationRecord
     ESTADO = ["A nivel nacional", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Ciudad de México", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"].freeze
 
     validates :titulo, :actividad, :fecha_ini, :fecha_fin, :descripcion, :estado, :publico_meta, :formato, :informes, presence: true
-    
+
+    scope :mis_eventos, ->(usuario) { select(:id, :titulo, :actividad, :fecha_ini, :fecha_fin, :estado).where(usuario: usuario).order(fecha_ini: :desc) }
+
 end
