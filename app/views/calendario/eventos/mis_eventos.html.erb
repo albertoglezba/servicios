@@ -8,8 +8,8 @@
 
 
 <div class="row">
-  <div class="col-6">
-    <div class="list-group" id="list-tab" role="tablist">
+  <div class="col col-10" id="list-container">
+    <div class="list-group">
       <% @eventos.each do |evento| %>
         <a class="list-group-item list-group-item-action list-eventos shadow-sm" id="list-evento-<%= evento.id %>-list" href="<%= calendario_evento_url(evento) %>">
           <div class="d-flex w-100 justify-content-between">
@@ -23,6 +23,6 @@
     </div>
   </div>
   <div class="col">
-    <div class="tab-content p-4" id="evento-content"></div>
+    <div class="tab-content" id="evento-content"></div>
   </div>
 </div>
