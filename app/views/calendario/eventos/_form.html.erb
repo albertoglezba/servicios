@@ -12,19 +12,16 @@
   <% end %>
 
   <div class="form-row">
-    <div class="form-group col-10 mb-3 mx-auto text-center">
-      <%= form.label :titulo, "Título" %>
+    <div class="form-group col-10 mb-3 mx-auto">
+      <%= form.label :titulo, "Título *" %>
       <%= form.text_field :titulo, id: :evento_titulo, class: "form-control form-control-lg", placeholder: 'Título del evento', required: :required %>
-    </div>
 
-    <div class="form-group col-6 mb-3">
-      <%= form.label :actividad, "Actividad *" %>
-      <%= form.select :actividad, options_for_select(Calendario::Evento::ACTIVIDAD), {prompt: "Selecciona actividad"}, id: :evento_actividad, class: "custom-select custom-select-lg" %>
-    </div>
-
-    <div class="form-group col-6 mb-3">
-      <%= form.label :otra_actividad, "Otra actividad (en caso de no estar en la lista)" %>
-      <%= form.text_field :otra_actividad, id: :evento_otra_actividad, class: "form-control form-control-lg" %>
+      <div class="form-group col-12 my-3">
+        <div class="custom-control custom-switch">
+          <%= form.check_box :celebracion, id: :evento_celebracion, class: "custom-control-input" %>
+          <%= form.label :celebracion, "Marcar solo si es un día nacional de celebración", class: "custom-control-label", for: :evento_celebracion %>
+        </div>
+      </div>
     </div>
 
     <div class="form-group col-6 mb-3">
@@ -43,30 +40,33 @@
     </div>
 
     <div class="form-group col-6 mb-3">
-      <%= form.label :informes, "Informes, contacto, dirección, URL del evento, etc *" %>
+      <%= form.label :actividad, "Actividad" %>
+      <%= form.select :actividad, options_for_select(Calendario::Evento::ACTIVIDAD), {prompt: "Selecciona actividad"}, id: :evento_actividad, class: "custom-select custom-select-lg" %>
+    </div>
+
+    <div class="form-group col-6 mb-3">
+      <%= form.label :otra_actividad, "Otra actividad (en caso de no estar en la lista)" %>
+      <%= form.text_field :otra_actividad, id: :evento_otra_actividad, class: "form-control form-control-lg" %>
+    </div>
+
+    <div class="form-group col-6 mb-3">
+      <%= form.label :informes, "Informes, contacto, dirección, URL del evento, etc" %>
       <%= form.text_field :informes, id: :evento_informes, class: "form-control form-control-lg" %>
     </div>
 
     <div class="form-group col-6 mb-3">
-      <%= form.label :estado, "Estado *" %>
+      <%= form.label :estado, "Estado" %>
       <%= form.select :estado, options_for_select(Calendario::Evento::ESTADO), {prompt: "Selecciona estado"}, id: :evento_estado, class: "custom-select custom-select-lg" %>
     </div>
 
     <div class="form-group col-6 mb-3">
-      <%= form.label :publico_meta, "¿A quién va dirigido? *" %>
+      <%= form.label :publico_meta, "¿A quién va dirigido?" %>
       <%= form.select :publico_meta, options_for_select(Calendario::Evento::PUBLICO_META), {prompt: "- - - Selecciona ---"}, id: :evento_publico_meta, class: "custom-select custom-select-lg" %>
     </div>
 
     <div class="form-group col-6 mb-3">
-      <%= form.label :formato, "¿Cómo se llevará a cabo el evento? *" %>
+      <%= form.label :formato, "¿Cómo se llevará a cabo el evento?" %>
       <%= form.select :formato, options_for_select(Calendario::Evento::FORMATO), {prompt: "- - - Selecciona ---"}, id: :evento_formato, class: "custom-select custom-select-lg" %>
-    </div>
-
-    <div class="form-group col-12 mb-3">
-      <div class="custom-control custom-switch">
-        <%= form.check_box :celebracion, id: :evento_celebracion, class: "custom-control-input" %>
-        <%= form.label :celebracion, "Marcar solo si es un día nacional de celebración", class: "custom-control-label", for: :evento_celebracion %>
-      </div>
     </div>
   </div>
 

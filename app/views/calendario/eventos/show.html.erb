@@ -19,8 +19,10 @@
   <%  if @usuario.present? %>
     <hr class="my-4">
     <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_calendario_evento_url(@evento), class: 'btn btn-sm btn-primary' %>
-    <%= link_to '<i class="fa fa-trash"></i>'.html_safe, calendario_evento_url(@evento), method: :delete, data: { confirm: '¿Estas seguro?' }, class: 'btn btn-sm btn-danger' %>
+    <%= link_to '<i class="fa fa-trash"></i>'.html_safe, calendario_evento_url(@evento), method: "delete-rusure", class: 'btn btn-sm btn-danger btn-borrar' %> 
+    <div class="alert alert-danger d-none" role="alert" id="rusure"></div> <br>
     <%= link_to 'Regresar a eventos'.html_safe, mis_eventos_calendario_eventos_url, class: 'btn btn-sm btn-link' %>
+
     <br>
     <i>Evento creado por: <strong><%= @usuario %></strong></i>
   <% end %>

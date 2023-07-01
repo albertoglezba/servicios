@@ -68,8 +68,10 @@ class Calendario::EventosController < ApplicationController
   # DELETE /eventos/1.json
   def destroy
     @evento.destroy
+    @eventos = Calendario::Evento.mis_eventos(@usuario)
     respond_to do |format|
-      format.html { redirect_to calendario_eventos_url, notice: 'Evento was successfully destroyed.' }
+      #format.html { render "calendario/eventos/mis_eventos", notice: 'Evento was successfully destroyed.' }
+      format.html { render plain: "borrado", content_type: 'text/plain' }
       format.json { head :no_content }
     end
   end
