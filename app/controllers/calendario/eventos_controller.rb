@@ -70,8 +70,7 @@ class Calendario::EventosController < ApplicationController
     @evento.destroy
     @eventos = Calendario::Evento.mis_eventos(@usuario)
     respond_to do |format|
-      #format.html { render "calendario/eventos/mis_eventos", notice: 'Evento was successfully destroyed.' }
-      format.html { render plain: "borrado", content_type: 'text/plain' }
+      format.html { render "calendario/eventos/mis_eventos", notice: 'Evento was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
