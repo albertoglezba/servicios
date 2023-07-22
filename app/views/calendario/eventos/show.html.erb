@@ -1,6 +1,6 @@
-<%# if flash.notice.present? %>
+<% if flash.notice.present? %>
   <div class="alert alert-primary" role="alert" id="notice"><%= notice %></div>
-<%# end %>
+<% end %>
 <div class="jumbotron">
   <h1 class="display-4"><%= @evento.titulo %></h1>
   <p class="lead">
@@ -27,5 +27,5 @@
     </div>
     <p class="text-right h6 my-3">Evento creado por: <strong><%= @usuario %></strong></p>
   <% end %>
-  <%= link_to '« Regresar a eventos'.html_safe, mis_eventos_calendario_eventos_path, class: 'btn btn-link pl-0' %>
+  <%= link_to '« Regresar a eventos'.html_safe, (@usuario.present? ? mis_eventos_calendario_eventos_path : calendario_eventos_path), class: 'btn btn-link pl-0' %>
 </div>
