@@ -17,8 +17,8 @@
     <div class="col-4">
       <div class="tab-content" id="evento-content"></div>
     </div>
+    <div class="col-12">
+      <%= link_to 'Administrar eventos', at_servicios(login_calendario_eventos_path), class: 'btn btn-sm btn-warning', title: 'Iniciar sesión para administrar evento', "data-toggle" => "tooltip", "data-placement" => "bottom"  %>
+    </div>
   </div>
 </div>
-
-
-<%= link_to 'Añadir evento', "/servicios"+login_calendario_eventos_path %>

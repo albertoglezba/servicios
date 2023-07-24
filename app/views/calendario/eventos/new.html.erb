@@ -1,5 +1,5 @@
 <h3>Captura un nuevo evento</h3>
 
-<%= render 'form', evento: @evento, url: calendario_eventos_path %>
+<%= render 'form', evento: @evento, url: at_servicios(calendario_eventos_path) %>
 
-<%= link_to 'Regresar a mis eventos'.html_safe, mis_eventos_calendario_eventos_path, class: 'btn btn-lg btn-link' %>
+<%= link_to 'Regresar a mis eventos'.html_safe, at_servicios(mis_eventos_calendario_eventos_path), class: 'btn btn-lg btn-link' %>
