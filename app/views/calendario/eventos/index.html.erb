@@ -4,21 +4,21 @@
 
 <div id="eventos-container" class="my-3">
   <div class="row">
-    <div class="col-10" id="list-container">
-      <%= month_calendar(events: @eventos) do |date, eventos| %>
-        <h5><%= date.day %></h5>
+    <div class="col" id="list-container">
+      <%= month_calendar(events: @eventos, partial: 'simple_calendar/month_calendar') do |date, eventos| %>
+        <h5 class="text-white-50 px-2 text-right"><%= date.day %></h5>
         <% eventos.each do |evento| %>
-            <a class="list-eventos btn btn-outline-dark btn-block btn-sm m-0 text-left rounded-0 border-0 shadow-sm" id="list-evento-<%= evento.id %>-list" href="<%= calendario_evento_url(evento) %>">
+            <a class="list-eventos btn btn-outline-light btn-block btn-sm ml-0 text-left rounded-0 border-0 shadow-sm" id="list-evento-<%= evento.id %>-list" href="/servicios<%= calendario_evento_path(evento) %>">
               <%= evento.titulo %>
             </a>
           <% end %>
       <% end %>
     </div>
-    <div class="col">
+    <div class="col-4">
       <div class="tab-content" id="evento-content"></div>
     </div>
   </div>
 </div>
 
 
-<%#= link_to 'New Evento', new_calendario_evento_path %>
+<%= link_to 'Añadir evento', "/servicios"+login_calendario_eventos_path %>
