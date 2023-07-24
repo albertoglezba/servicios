@@ -1,15 +1,17 @@
 class Calendario::EventosController < ApplicationController
 
-  before_action :cors_set_access_control_headers, except: [:index]
-  before_action :authenticate_eventos, except: [:index, :login]
+  #before_action :cors_set_access_control_headers, except: [:index]
+  before_action :authenticate_eventos, except: [:index, :login, :show]
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
-  before_action :tiene_permisos?, only: [:show, :edit, :update, :destroy]
-  layout false, except: [:index]
+  before_action :tiene_permisos?, only: [:edit, :update, :destroy]
+  layout false#, except: [:index]
 
   # GET /eventos
   # GET /eventos.json
   def index
-    @eventos = Calendario::Evento.all.order(fecha_ini: :desc)
+    start_date = params.fetch(:start_date, Date.today).to_date
+    @eventos = Calendario::Evento.eventos_del_mes(start_date)
+      #@eventos = Calendario::Evento.all.order(fecha_ini: :desc)
   end
 
   def mis_eventos
