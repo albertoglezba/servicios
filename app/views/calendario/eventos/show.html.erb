@@ -1,0 +1,31 @@
+<% if notice.present? %>
+  <div class="alert alert-primary" role="alert" id="notice"><%= notice %></div>
+<% end %>
+<div class="jumbotron">
+  <h1 class="display-4"><%= @evento.titulo %></h1>
+  <p class="lead">
+    <%= @evento.actividad %><% ": #{@evento.otra_actividad}" if @evento.actividad == 'Otra'%> <br>
+    <%= @evento.publico_meta %> <br>
+    <%= @evento.formato %> <br>
+    <%= @evento.estado %> <br>
+    <small><%= @evento.fecha_ini.strftime('%d/%m/%y - %H:%M') %> - <%= @evento.fecha_fin.strftime('%d/%m/%y - %H:%M') %></small> <br>
+    <%= "<strong class='text-success'>Día nacional de celebracion</strong>".html_safe if @evento.celebracion %>
+  </p>
+  <hr class="my-4">
+  <p>
+    <%= @evento.descripcion %> <br>
+    <strong><i class="fa fa-info-circle"></i> </strong><%= @evento.informes %>
+  </p>
+  <%  if @usuario.present? %>
+    <hr class="my-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_calendario_evento_url(@evento), class: 'btn btn-info mx-2' %>
+      <%= button_tag '<i class="fa fa-trash"></i>'.html_safe, type: 'button', class: 'btn btn-danger mx-2 rusure', onclick: "$('.rusure').toggleClass('invisible');" %>
+      <b class="text-secondary rusure invisible">¿Estás seguro?</b>
+      <%= link_to 'Borrar evento', calendario_evento_url(@evento), "data-metodo" => "delete", class: 'btn btn-outline-danger mx-2 rusure invisible' %>
+      <%= button_tag 'Cancelar', type: 'button', class: 'btn btn-outline-success mx-2 rusure invisible', onclick: "$('.rusure').toggleClass('invisible');" %>
+    </div>
+    <p class="text-right h6 my-3">Evento creado por: <strong><%= @usuario %></strong></p>
+  <% end %>
+  <%= link_to '« Regresar a eventos'.html_safe, mis_eventos_calendario_eventos_url, class: 'btn btn-link pl-0' %>
+</div>

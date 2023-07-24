@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  match '*all', controller: 'application', action: 'cors_preflight_check', via: [:options]
+
+  namespace :calendario do
+    resources :eventos do
+      collection do
+        get 'mis_eventos'
+        get 'login'
+      end
+    end
+  end
+
   namespace :naturalista do
     resources :estadisticas do
       collection do
@@ -9,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   namespace :juridico do
-    root 'instrumentos#index'
+    root 'instrumentos#index' 
     resources :instrumentos
   end
 
