@@ -16,12 +16,13 @@ class ApplicationController < ActionController::Base
       username_password = Rails.application.secrets.usuarios[tipo_usuario][username.to_sym]
       
       if username_password.present? && username_password.to_s == password
-          @usuario = username
-          return true
+        @usuario = username
+        return true
       else
-        render 'shared/tryAgain', layout: false
+        @usuario = nil
+        return true
       end
-		end
+    end
   end
 
   def cors_set_access_control_headers

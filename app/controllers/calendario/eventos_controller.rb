@@ -1,7 +1,7 @@
 class Calendario::EventosController < ApplicationController
 
   #before_action :cors_set_access_control_headers, except: [:index]
-  before_action :authenticate_eventos, except: [:index, :login, :show]
+  before_action :authenticate_eventos, except: [:index, :login]#, :show]
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
   before_action :tiene_permisos?, only: [:edit, :update, :destroy]
   layout false#, except: [:index]
@@ -16,6 +16,8 @@ class Calendario::EventosController < ApplicationController
 
   def mis_eventos
     @eventos = Calendario::Evento.mis_eventos(@usuario)
+    render 'shared/tryAgain' unless @usuario.present?
+
   end
 
   def login

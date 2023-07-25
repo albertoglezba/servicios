@@ -1,12 +1,12 @@
-<div class="simple-calendar">
-  <div class="calendar-heading d-flex justify-content-between align-items-center">
+<div class="simple-calendar shadow-sm">
+  <div class="calendar-heading d-flex justify-content-between align-items-center border">
     <%= link_to "<i class='fa fa-angle-double-left'></i>".html_safe, at_servicios(calendar.url_for_previous_view), class: 'btn btn-lg btn-link' %>
     <h3 class="calendar-title text-capitalize font-weight-bolder"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></h3>
     <%= link_to "<i class='fa fa-angle-double-right'></i>".html_safe, at_servicios(calendar.url_for_next_view), class: 'btn btn-lg btn-link' %>
   </div>
 
-  <table class="table table-dark table-bordered">
-    <thead>
+  <table class="table table-sm table-bordered">
+    <thead class="table-info">
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
           <th><%= t('date.abbr_day_names')[day.wday] %></th>
