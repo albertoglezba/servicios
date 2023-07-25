@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  #skip_before_action :verify_authenticity_token, if: :evitaCSFR?
+  skip_before_action :verify_authenticity_token, if: :evitaCSFR?
 
   def cors_preflight_check
     if request.method == 'OPTIONS'
