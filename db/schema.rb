@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20230630182407) do
 
-  create_table "eventos", force: :cascade do |t|
+  create_table "eventos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "titulo", null: false
     t.string "actividad"
     t.string "otra_actividad"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20230630182407) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "naturalista_estadisticas", force: :cascade do |t|
+  create_table "naturalista_estadisticas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "titulo"
     t.string "icono"
     t.text "descripcion"
