@@ -3,7 +3,7 @@ class CreateNaturalistaEstadisticas < ActiveRecord::Migration[5.1]
     Naturalista::Estadistica.connection.enable_extension "sqlite"
 
     Naturalista::Estadistica.connection.create_table :naturalista_estadisticas do |t|
-      t.string :titulo
+      t.string :titulo, :limit => 190
       t.string :icono
       t.text :descripcion
       t.integer :lugar_id
