@@ -3,20 +3,33 @@
 <% end %>
 
 <div id="eventos-container" class="my-3">
+  <h2 class="bg-dark px-4 py-2 text-white">Calendario de eventos
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-link text-white" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <%= link_to 'Administrar eventos', at_servicios(login_calendario_eventos_path), class: 'dropdown-item', title: 'Iniciar sesión para administrar evento'%>
+        <button class="dropdown-item" type="button">.</button>
+      </div>
+    </div>
+  </h2>
+
   <div class="row">
     <div class="col" id="list-container">
       <%= month_calendar(events: @eventos, partial: 'simple_calendar/month_calendar') do |date, eventos| %>
         <h5 class="text-black-50 px-2 text-right"><%= date.day %></h5>
         <% eventos.each do |evento| %>
-            <a class="list-eventos btn btn-outline-dark btn-block btn-sm rounded-0 border-0 ml-0 text-left" id="list-evento-<%= evento.id %>-list" href="/servicios<%= calendario_evento_path(evento) %>">
-              <%= evento.titulo %>
-            </a>
-          <% end %>
+          <a class="list-eventos btn btn-outline-dark btn-block btn-sm rounded-0 border-0 ml-0 text-left" id="list-evento-<%= evento.id %>-list" href="/servicios<%= calendario_evento_path(evento) %>">
+            <%= evento.titulo %>
+          </a>
+        <% end %>
       <% end %>
     </div>
     <div class="col-4">
-      <div class="tab-content" id="evento-content"></div>
-      <%= link_to 'Administrar eventos', at_servicios(login_calendario_eventos_path), class: 'btn btn-sm btn-block btn-warning', title: 'Iniciar sesión para administrar evento', "data-toggle" => "tooltip", "data-placement" => "bottom"  %>
+      <div class="tab-content bg-light border shadow-sm px-4" id="evento-content"></div>
+      <a href="/conabio/ecos-de-la-naturaleza" class="btn btn-block btn-outline-dark">Boletín informativo</a>
+      <a href="mailto:ecos_naturaleza@conabio.gob.mx?subject=SUSCRIPCIÓN a Ecos de la naturaleza&amp;body=Deseo suscribirme a Ecos de la naturaleza." target="_blank" rel="noopener" class="btn btn-block btn-outline-dark"><img class="img-fluid" src="/media/1/conabio/difusion/ecos-naturaleza/banner-ecos.jpg" alt="banner de suscripción"></a>
     </div>
   </div>
 </div>
