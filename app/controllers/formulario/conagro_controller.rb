@@ -1,30 +1,30 @@
-class ConagrosController < ApplicationController
+class Formulario::ConagroController < ApplicationController
   before_action :set_conagro, only: [:show, :edit, :update, :destroy]
 
-  # GET /conagros
-  # GET /conagros.json
+  # GET /conagro
+  # GET /conagro.json
   def index
-    @conagros = Conagro.all
+    @conagro = Formulario::Conagro.all
   end
 
-  # GET /conagros/1
-  # GET /conagros/1.json
+  # GET /conagro/1
+  # GET /conagro/1.json
   def show
   end
 
-  # GET /conagros/new
+  # GET /conagro/new
   def new
-    @conagro = Conagro.new
+    @conagro = Formulario::Conagro.new
   end
 
-  # GET /conagros/1/edit
+  # GET /conagro/1/edit
   def edit
   end
 
-  # POST /conagros
-  # POST /conagros.json
+  # POST /conagro
+  # POST /conagro.json
   def create
-    @conagro = Conagro.new(conagro_params)
+    @conagro = Formulario::Conagro.new(conagro_params)
 
     respond_to do |format|
       if @conagro.save
@@ -37,8 +37,8 @@ class ConagrosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /conagros/1
-  # PATCH/PUT /conagros/1.json
+  # PATCH/PUT /conagro/1
+  # PATCH/PUT /conagro/1.json
   def update
     respond_to do |format|
       if @conagro.update(conagro_params)
@@ -51,12 +51,12 @@ class ConagrosController < ApplicationController
     end
   end
 
-  # DELETE /conagros/1
-  # DELETE /conagros/1.json
+  # DELETE /conagro/1
+  # DELETE /conagro/1.json
   def destroy
     @conagro.destroy
     respond_to do |format|
-      format.html { redirect_to conagros_url, notice: 'Conagro was successfully destroyed.' }
+      format.html { redirect_to conagro_url, notice: 'Conagro was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +64,11 @@ class ConagrosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conagro
-      @conagro = Conagro.find(params[:id])
+      @conagro = Formulario::Conagro.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conagro_params
-      params.require(:conagro).permit(:nombre, :apellidos, :correo, :pais, :institucion, :cargo, :eje)
+      params.require(:formulario_conagro).permit(:nombre, :apellidos, :correo, :pais, :institucion, :cargo, :eje)
     end
 end

@@ -1,2 +1,2 @@
-class Conagro < ApplicationRecord
+module Conagro
 end

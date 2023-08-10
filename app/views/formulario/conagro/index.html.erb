@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Conagros</h1>
+<h1>Conagro</h1>
 
 <table>
   <thead>
@@ -17,7 +17,7 @@
   </thead>
 
   <tbody>
-    <% @conagros.each do |conagro| %>
+    <% @conagro.each do |conagro| %>
       <tr>
         <td><%= conagro.nombre %></td>
         <td><%= conagro.apellidos %></td>
@@ -27,7 +27,7 @@
         <td><%= conagro.cargo %></td>
         <td><%= conagro.eje %></td>
         <td><%= link_to 'Show', conagro %></td>
-        <td><%= link_to 'Edit', edit_conagro_path(conagro) %></td>
+        <td><%= link_to 'Edit', edit_formulario_conagro_path(conagro) %></td>
         <td><%= link_to 'Destroy', conagro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Conagro', new_conagro_path %>
+<%= link_to 'New Conagro', new_formulario_conagro_path %>
