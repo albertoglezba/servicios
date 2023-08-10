@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @conagro.nombre %>
+</p>
+
+<p>
+  <strong>Apellidos:</strong>
+  <%= @conagro.apellidos %>
+</p>
+
+<p>
+  <strong>Correo:</strong>
+  <%= @conagro.correo %>
+</p>
+
+<p>
+  <strong>Pais:</strong>
+  <%= @conagro.pais %>
+</p>
+
+<p>
+  <strong>Institucion:</strong>
+  <%= @conagro.institucion %>
+</p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @conagro.cargo %>
+</p>
+
+<p>
+  <strong>Eje:</strong>
+  <%= @conagro.eje %>
+</p>
+
+<%= link_to 'Edit', edit_conagro_path(@conagro) %> |
+<%= link_to 'Back', conagros_path %>

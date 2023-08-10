@@ -1,0 +1,2 @@
+class Conagro < ApplicationRecord
+end

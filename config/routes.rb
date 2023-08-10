@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :conagros
   match '*all', controller: 'application', action: 'cors_preflight_check', via: [:options]
 
   namespace :calendario do

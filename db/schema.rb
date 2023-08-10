@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230630182407) do
+ActiveRecord::Schema.define(version: 20230810000618) do
+
+  create_table "conagros", force: :cascade do |t|
+    t.string "nombre"
+    t.string "apellidos"
+    t.string "correo"
+    t.string "pais"
+    t.string "institucion"
+    t.string "cargo"
+    t.string "eje"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "eventos", force: :cascade do |t|
     t.string "titulo", null: false

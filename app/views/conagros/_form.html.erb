@@ -1,0 +1,52 @@
+<%= form_with(model: conagro, local: true) do |form| %>
+  <% if conagro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(conagro.errors.count, "error") %> prohibited this conagro from being saved:</h2>
+
+      <ul>
+      <% conagro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :conagro_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellidos %>
+    <%= form.text_field :apellidos, id: :conagro_apellidos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :correo %>
+    <%= form.text_field :correo, id: :conagro_correo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pais %>
+    <%= form.text_field :pais, id: :conagro_pais %>
+  </div>
+
+  <div class="field">
+    <%= form.label :institucion %>
+    <%= form.text_field :institucion, id: :conagro_institucion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cargo %>
+    <%= form.text_field :cargo, id: :conagro_cargo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :eje %>
+    <%= form.text_field :eje, id: :conagro_eje %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
