@@ -1,5 +1,11 @@
-<h3>Edita el evento</h3>
+<%= render partial: 'calendario/eventos/admin_menu'  %>
+<div class="container">
+  <h3>Edita el evento</h3>
 
-<%= render 'form', evento: @evento, url: at_servicios(calendario_evento_path) %>
-
-<%= link_to 'Regresar a mis eventos'.html_safe, at_servicios(mis_eventos_calendario_eventos_path), class: 'btn btn-lg btn-link' %>
+  <div class="row">
+    <div class="col" id="list-container">
+      <%= render 'form', evento: @evento, url: at_servicios(calendario_evento_path) %>
+      <%= link_to 'Regresar a mis eventos'.html_safe, at_servicios(mis_eventos_calendario_eventos_path), class: 'btn btn-lg btn-link' %>
+    </div>
+  </div>
+</div>

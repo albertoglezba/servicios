@@ -1,8 +1,16 @@
-<form action="<%= at_servicios(mis_eventos_calendario_eventos_path) %>">
-  <div class="d-flex jumbotron">
-    <input id="name" type="text" class="form-control form-control-lg mx-3" placeholder="Usuario">
-    <input id="passwd" type="password" class="form-control form-control-lg mx-3" placeholder="Contraseña">
-    <button type="submit" class="btn btn-success btn-lg btn-block mx-5">Inicia sesión</button>
-  </div>
-</form>
+<%= render partial: 'calendario/eventos/admin_menu'  %>
+<div class="container">
+  <h3>Proporciona tus credenciales para poder administrar</h3>
 
+  <div class="row">
+    <div class="col" id="list-container">
+      <form action="<%= at_servicios(mis_eventos_calendario_eventos_path) %>">
+        <div class="d-flex jumbotron">
+          <input id="name" type="text" class="form-control form-control-lg mx-3" placeholder="Usuario">
+          <input id="passwd" type="password" class="form-control form-control-lg mx-3" placeholder="Contraseña">
+          <button type="submit" class="btn btn-success btn-lg btn-block mx-5">Inicia sesión</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

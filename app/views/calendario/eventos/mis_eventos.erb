@@ -1,27 +1,25 @@
-<div id="eventos-container" style="background-color: #efefef;">
-  <%= render partial: 'calendario/eventos/admin_menu'  %>
-  <div class="container">
+<%= render partial: 'calendario/eventos/admin_menu'  %>
+<div class="container">
+    <h3>
+      Eventos de <%= @usuario %> <%= link_to '<i class="fa fa-plus-circle"></i>'.html_safe, at_servicios(new_calendario_evento_path), class: 'btn btn-lg btn-link', title: 'Añadir evento', "data-toggle" => "tooltip", "data-placement" => "bottom"  %>
+    </h3>
     <div class="row">
-      <h3>
-        Eventos de <%= @usuario %> <%= link_to '<i class="fa fa-plus-circle"></i>'.html_safe, at_servicios(new_calendario_evento_path), class: 'btn btn-lg btn-link', title: 'Añadir evento', "data-toggle" => "tooltip", "data-placement" => "bottom"  %>
-      </h3>
-      <div class="col" id="list-container">
-        <div class="list-group">
-          <% @eventos.each do |evento| %>
-            <a class="list-group-item list-group-item-action list-eventos shadow-sm" id="list-evento-<%= evento.id %>-list" href="<%= at_servicios(calendario_evento_path(evento)) %>">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><%= evento.titulo %></h5>
-                <small><%= evento.fecha_ini.strftime('%d/%m/%y') %> </small>
-              </div>
-              <p class="mb-1"><%= evento.actividad %></p>
-              <small><%= evento.estado%></small>
-            </a>
-          <% end %>
-        </div>
+    <div class="col" id="list-container">
+      <div class="list-group">
+        <% @eventos.each do |evento| %>
+          <a class="list-group-item list-group-item-action list-eventos shadow-sm" id="list-evento-<%= evento.id %>-list" href="<%= at_servicios(calendario_evento_path(evento)) %>">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"><%= evento.titulo %></h5>
+              <small><%= evento.fecha_ini.strftime('%d/%m/%y') %> </small>
+            </div>
+            <p class="mb-1"><%= evento.actividad %></p>
+            <small><%= evento.estado%></small>
+          </a>
+        <% end %>
       </div>
-      <div class="col-4">
-        <div class="tab-content bg-light border shadow-sm p-4" id="evento-content"></div>
-      </div>
+    </div>
+    <div class="col-4">
+      <div class="tab-content bg-light border shadow-sm p-4" id="evento-content"></div>
     </div>
   </div>
 </div>

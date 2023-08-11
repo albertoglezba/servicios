@@ -4,7 +4,7 @@
 
 <h1 class="my-4 text-dark"><%= @evento.titulo %><i class="fa fa-bookmark fa-rotate-90 pull-right mr-n4"></i></h1>
 
-<p>
+<p class="text-break">
   <b><%= @evento.actividad == 'Otra' ? @evento.otra_actividad : @evento.actividad %></b> <br>
   <%= damePublicoMeta(@evento.publico_meta) if @evento.publico_meta.present? %>
   <%= dameFormato(@evento.formato) if @evento.formato.present? %>
@@ -16,11 +16,11 @@
   <%= "<strong class='text-success'>Día nacional de celebracion</strong>".html_safe if @evento.celebracion %>
 </p>
 <hr class="my-2">
-<p class="font-weight-bolder">
+<p class="text-break font-weight-bolder">
   <%= @evento.descripcion %> <br>
 </p>
 <hr class="my-2">
-<p>
+<p class="text-break">
   <i class="fa fa-info-circle"></i> <%= @evento.informes %>
 </p>
 <%  if @usuario.present? %>
