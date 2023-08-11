@@ -2,7 +2,7 @@
   <div class="alert alert-primary" role="alert" id="notice"><%= notice %></div>
 <% end %>
 
-<h1 class="my-4 text-dark"><%= @evento.titulo %><i class="fa fa-bookmark fa-rotate-90 pull-right mr-n4"></i></h1>
+<h1 class="my-4 text-dark"><%= @evento.titulo %><i class="fa fa-bookmark fa-rotate-90 pull-right mr-n4" style="color: <%= dameColorFormato(@evento.formato, @evento.celebracion) %>"></i></h1>
 
 <p class="text-break">
   <b><%= @evento.actividad == 'Otra' ? @evento.otra_actividad : @evento.actividad %></b> <br>
