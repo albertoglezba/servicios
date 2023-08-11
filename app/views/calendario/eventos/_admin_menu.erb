@@ -1,0 +1,19 @@
+<div id="eventos-admin" class="bg-dark">
+  <h2 class="container p-3 text-white">Calendario de eventos
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-lg btn-link text-white" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <%= link_to 'Administrar eventos', at_servicios(login_calendario_eventos_path), class: 'dropdown-item', title: 'Iniciar sesión para administrar evento'%>
+        <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-media-content">
+          Iniciar sesión
+        </button>
+        <button class="dropdown-item" type="button">.</button>
+      </div>
+    </div>
+  </h2>
+  <% if flash.notice.present? %>
+    <div class="alert alert-primary" role="alert" id="notice"><%= notice %></div>
+  <% end %>
+</div>
