@@ -7,9 +7,9 @@ class Calendario::Evento < ApplicationRecord
 
     validates :titulo, :fecha_ini, :fecha_fin, :descripcion, presence: true
 
-    scope :mis_eventos, ->(usuario) { select(:id, :titulo, :actividad, :fecha_ini, :fecha_fin, :estado).where(usuario: usuario).order(fecha_ini: :desc) }
+    scope :mis_eventos, ->(usuario) { select(:id, :titulo, :actividad, :fecha_ini, :fecha_fin, :estado, :formato, :celebracion).where(usuario: usuario).order(fecha_ini: :desc) }
 
-    scope :eventos_del_mes, ->(start_date) { select(:id, :titulo, :actividad, :fecha_ini, :fecha_fin, :estado).where(fecha_ini: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).order(fecha_ini: :desc) }
+    scope :eventos_del_mes, ->(start_date) { select(:id, :titulo, :actividad, :fecha_ini, :fecha_fin, :estado, :formato, :celebracion).where(fecha_ini: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).order(fecha_ini: :desc) }
 
     def start_time
         self.fecha_ini

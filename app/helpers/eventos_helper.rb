@@ -29,6 +29,8 @@ module EventosHelper
     end
   end
 
-
+  def dameColorFormato(formato, celebracion)
+    celebracion ? "#747b0e" : {"Presencial" => "#005378", "Virtual" => "#c2b59b", "Híbrido" => "#b55410"}[formato]
+  end
 
 end

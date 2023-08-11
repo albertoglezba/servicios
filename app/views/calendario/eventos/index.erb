@@ -6,7 +6,7 @@
         <%= month_calendar(events: @eventos, partial: 'simple_calendar/month_calendar') do |date, eventos| %>
           <h5 class="text-black-50 px-2 text-right"><%= date.day %></h5>
           <% eventos.each do |evento| %>
-            <a class="list-eventos btn btn-outline-dark btn-block btn-sm rounded-0 border-0 ml-0 text-left" id="list-evento-<%= evento.id %>-list" href="/servicios<%= calendario_evento_path(evento) %>">
+            <a class="list-eventos btn btn-outline-dark btn-block btn-sm rounded-0 border-0 ml-0 text-left" id="list-evento-<%= evento.id %>-list" href="/servicios<%= calendario_evento_path(evento) %>" style="background-color: <%= dameColorFormato(evento.formato, evento.celebracion) %>">
               <%= evento.titulo %>
             </a>
           <% end %>
