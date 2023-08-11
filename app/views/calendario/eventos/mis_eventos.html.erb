@@ -1,17 +1,16 @@
-<% if notice.present? %>
+<% if flash.notice.present? %>
   <div class="alert alert-primary" role="alert" id="notice"><%= notice %></div>
 <% end %>
-
-<p class="h3">
-  Eventos de <%= @usuario %> <%= link_to '<i class="fa fa-plus-circle"></i>'.html_safe, new_calendario_evento_url, class: 'btn btn-lg btn-link', title: 'Añadir evento', "data-toggle" => "tooltip", "data-placement" => "bottom"  %>
-</p>
+<h3>
+  Eventos de <%= @usuario %> <%= link_to '<i class="fa fa-plus-circle"></i>'.html_safe, at_servicios(new_calendario_evento_path), class: 'btn btn-lg btn-link', title: 'Añadir evento', "data-toggle" => "tooltip", "data-placement" => "bottom"  %>
+</h3>
 
 
 <div class="row">
-  <div class="col col-10" id="list-container">
+  <div class="col" id="list-container">
     <div class="list-group">
       <% @eventos.each do |evento| %>
-        <a class="list-group-item list-group-item-action list-eventos shadow-sm" id="list-evento-<%= evento.id %>-list" href="<%= calendario_evento_url(evento) %>">
+        <a class="list-group-item list-group-item-action list-eventos shadow-sm" id="list-evento-<%= evento.id %>-list" href="<%= at_servicios(calendario_evento_path(evento)) %>">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1"><%= evento.titulo %></h5>
             <small><%= evento.fecha_ini.strftime('%d/%m/%y') %> </small>
@@ -22,7 +21,7 @@
       <% end %>
     </div>
   </div>
-  <div class="col">
-    <div class="tab-content" id="evento-content"></div>
+  <div class="col-4">
+    <div class="tab-content bg-light border shadow-sm p-4" id="evento-content"></div>
   </div>
 </div>

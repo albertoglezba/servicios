@@ -56,3 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mysql2'
 gem 'rest-client'
 gem 'trollop'
+gem "simple_calendar", "~> 2.4"
+gem 'rails-i18n', '~> 5.1'

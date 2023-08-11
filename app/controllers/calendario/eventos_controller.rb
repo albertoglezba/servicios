@@ -1,19 +1,23 @@
 class Calendario::EventosController < ApplicationController
 
-  before_action :cors_set_access_control_headers, except: [:index]
-  before_action :authenticate_eventos, except: [:index, :login]
+  #before_action :cors_set_access_control_headers, except: [:index]
+  before_action :authenticate_eventos, except: [:index, :login]#, :show]
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
-  before_action :tiene_permisos?, only: [:show, :edit, :update, :destroy]
-  layout false, except: [:index]
+  before_action :tiene_permisos?, only: [:edit, :update, :destroy]
+  layout false#, except: [:index]
 
   # GET /eventos
   # GET /eventos.json
   def index
-    @eventos = Calendario::Evento.all.order(fecha_ini: :desc)
+    start_date = params.fetch(:start_date, Date.today).to_date
+    @eventos = Calendario::Evento.eventos_del_mes(start_date)
+      #@eventos = Calendario::Evento.all.order(fecha_ini: :desc)
   end
 
   def mis_eventos
     @eventos = Calendario::Evento.mis_eventos(@usuario)
+    render 'shared/tryAgain' unless @usuario.present?
+
   end
 
   def login
@@ -41,7 +45,7 @@ class Calendario::EventosController < ApplicationController
 
     respond_to do |format|
       if @evento.save
-        format.html { redirect_to @evento, notice: 'Evento was successfully created.' }
+        format.html { render :show, location: @evento, notice: 'El evento se creó correctamente' }
         format.json { render :show, status: :created, location: @evento }
       else
         format.html { render :new }
@@ -55,7 +59,7 @@ class Calendario::EventosController < ApplicationController
   def update
     respond_to do |format|
       if @evento.update(evento_params)
-        format.html { redirect_to @evento, notice: 'Evento was successfully updated.' }
+        format.html { render :show, location: @evento, notice: 'El evento se actualizó correctamente' }
         format.json { render :show, status: :ok, location: @evento }
       else
         format.html { render :edit }
