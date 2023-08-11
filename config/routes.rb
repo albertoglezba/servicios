@@ -23,9 +23,4 @@ Rails.application.routes.draw do
     resources :conagro
   end
 
-  namespace :juridico do
-    root 'instrumentos#index' 
-    resources :instrumentos
-  end
-
 end
