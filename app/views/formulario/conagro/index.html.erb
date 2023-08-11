@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Conagro</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Correo</th>
+      <th>Pais</th>
+      <th>Institucion</th>
+      <th>Cargo</th>
+      <th>Eje</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @conagro.each do |conagro| %>
+      <tr>
+        <td><%= conagro.nombre %></td>
+        <td><%= conagro.apellidos %></td>
+        <td><%= conagro.correo %></td>
+        <td><%= conagro.pais %></td>
+        <td><%= conagro.institucion %></td>
+        <td><%= conagro.cargo %></td>
+        <td><%= conagro.eje %></td>
+        <td><%= link_to 'Show', conagro %></td>
+        <td><%= link_to 'Edit', edit_formulario_conagro_path(conagro) %></td>
+        <td><%= link_to 'Destroy', conagro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Conagro', new_formulario_conagro_path %>

@@ -1,0 +1,52 @@
+<%= form_with(model: conagro, local: true) do |form| %>
+  <% if conagro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(conagro.errors.count, "error") %> prohibited this conagro from being saved:</h2>
+
+      <ul>
+      <% conagro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-group my-3">
+    <%= form.label :nombre, class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.text_field :nombre, id: :conagro_nombre, class: "form-control" %>
+  </div>
+
+  <div class="input-group my-3">
+    <%= form.label :apellidos, class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.text_field :apellidos, id: :conagro_apellidos, class: "form-control" %>
+  </div>
+
+  <div class="input-group my-3">
+    <%= form.label :correo, class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.email_field :correo, id: :conagro_correo, class: "form-control" %>
+  </div>
+
+  <div class="input-group my-3">
+    <%= form.label :pais, "País", class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.select :pais, Formulario::Conagro::PAISES, {prompt: "- - - Selecciona tu país - - -"}, {id: :conagro_pais, class: "form-control"} %>
+  </div>
+
+  <div class="input-group my-3">
+    <%= form.label :institucion, "Institución u organización", class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.text_field :institucion, id: :conagro_institucion, class: "form-control" %>
+  </div>
+
+  <div class="input-group my-3">
+    <%= form.label :cargo, class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.text_field :cargo, id: :conagro_cargo, class: "form-control" %>
+  </div>
+
+  <div class="input-group my-3">
+    <%= form.label :eje, "Eje en el que participa", class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.select :eje, Formulario::Conagro::EJES, {prompt: "- - - Selecciona tu eje - - -"}, {id: :conagro_eje, class: "form-control"} %>
+  </div>
+
+  <div class="text-right">
+    <%= form.submit "Enviar", class: "btn btn-primary my-3" %>
+  </div>
+<% end %>

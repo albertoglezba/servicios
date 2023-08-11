@@ -19,9 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :juridico do
-    root 'instrumentos#index' 
-    resources :instrumentos
+  namespace :formulario do
+    resources :conagro
   end
 
 end
