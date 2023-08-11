@@ -29,6 +29,8 @@ class Formulario::ConagroController < ApplicationController
 
     respond_to do |format|
       if @conagro.save
+        ConagroMailer.inscripcion(@conagro).deliver
+
         format.html { redirect_to new_formulario_conagro_url, notice: 'Tu inscripción quedo registrada correctamente. Mandaremos un correo con la confirmación de tu inscripción.' }
         format.json { render :show, status: :created, location: @conagro }
       else
