@@ -1,5 +1,14 @@
-<h1>New Conagro</h1>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 my-5 p-5 border border-dark rounded">
+        <p id="notice"><%= notice %></p>
+        <h2 class="mb-5 text-center">Inscripción para el Congreso Nacional Agroecológico</h2>
+        <%= render 'form', conagro: @conagro %>
 
-<%= render 'form', conagro: @conagro %>
+        <hr />
+        <h5>PRIVACIDAD Y PROTECCIÓN DE INFORMACIÓN</h5>
 
-<%= link_to 'Back', formulario_conagro_index_path %>
+        El “Comité Organizador” manifiesta que cuenta con las medidas necesarias para proteger la información y los datos personales que sean proporcionados por los participantes. Una vez que se concluyan con el registro, se enviará un correo de confirmación.
+    </div>
+    <div class="col-2"></div>
+</div>
