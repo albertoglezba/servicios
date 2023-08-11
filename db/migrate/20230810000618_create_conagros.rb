@@ -1,4 +1,4 @@
-class CreateConagro < ActiveRecord::Migration[5.1]
+class CreateConagros < ActiveRecord::Migration[5.1]
   def change
     create_table :conagro do |t|
       t.string :nombre
