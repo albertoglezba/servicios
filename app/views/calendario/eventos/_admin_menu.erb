@@ -6,9 +6,8 @@
       </button>
       <div class="dropdown-menu dropdown-menu-right">
         <%= link_to 'Administrar eventos', at_servicios(login_calendario_eventos_path), class: 'dropdown-item', title: 'Iniciar sesión para administrar evento'%>
-        <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-media-content">
-          Iniciar sesión
-        </button>
+        <button type="button" class="dropdown-item" onClick="window.location.reload();">Inicio</button>
+        <!--button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-media-content">Iniciar sesión</button-->
         <button class="dropdown-item" type="button">.</button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<div id="eventos-container">
+<div id="eventos-container" style="background-color: #efefef;">
   <%= render partial: 'calendario/eventos/admin_menu'  %>
   <div class="container">
     <div class="row">
@@ -14,9 +14,8 @@
       </div>
       <div class="col-4">
         <div class="tab-content bg-light border shadow-sm px-4" id="evento-content"></div>
-        <a href="/conabio/ecos-de-la-naturaleza" class="btn btn-outline-light border">
+        <button class="btn btn-outline-light border" onClick="window.location.href='/conabio/ecos-de-la-naturaleza'">
           <img class="img-fluid" src="/media/1/conabio/ecos-naturaleza/ecos-nat-logo.jpg" alt="Boletín informativo">
-        </a>
       </div>
     </div>
   </div>
