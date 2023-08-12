@@ -1,5 +1,5 @@
 module ApplicationHelper
   def at_servicios(url)
-    Rails.env.production? ? "/servicios#{url}" : url
+    request.original_url.include?("biodiversidad.gob.mx") ? "/servicios#{url}" : url
   end
 end
