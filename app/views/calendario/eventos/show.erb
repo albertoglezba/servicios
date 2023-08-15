@@ -20,9 +20,12 @@
   <%= @evento.descripcion %> <br>
 </p>
 <hr class="my-2">
-<p class="text-break">
-  <i class="fa fa-info-circle"></i> <%= @evento.informes.html_safe %>
-</p>
+<% if @evento.informes %>
+  <p class="text-break">
+    <i class="fa fa-info-circle"></i> <%= @evento.informes.html_safe %>
+  </p>
+<% end %>
+
 <%  if @usuario.present? %>
   <hr class="my-4">
   <div class="d-flex justify-content-between align-items-center">
