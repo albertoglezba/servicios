@@ -1,4 +1,4 @@
-<%= form_with(model: conagro, local: true) do |form| %>
+<%= form_with(model: conagro, local: true, url: url) do |form| %>
   <% if conagro.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(conagro.errors.count, "error") %> prohibited this conagro from being saved:</h2>

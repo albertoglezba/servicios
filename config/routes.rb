@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   namespace :formulario do
-    resources :conagro
+    resources :conagro, only: [:new, :create]
   end
 
 end
