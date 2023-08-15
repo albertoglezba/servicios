@@ -9,9 +9,9 @@
   <%= damePublicoMeta(@evento.publico_meta) if @evento.publico_meta.present? %>
   <%= dameFormato(@evento.formato) if @evento.formato.present? %>
   <%= "<i class='fa fa-map-o'></i> #{@evento.estado} <br>".html_safe if @evento.estado.present? %>
-  Del <i class="fa fa-calendar"></i> <%= @evento.fecha_ini.strftime('%d/%m/%y') %> &middot;
-  <i class="fa fa-clock-o"></i> <%= @evento.fecha_ini.strftime('%H:%M') %> <br>
-  al <i class="fa fa-calendar"></i> <%= @evento.fecha_fin.strftime('%d/%m/%y') %> &middot;
+  <i class="fa fa-calendar"></i> <%= @evento.fecha_ini.strftime('%d/%m/%y') %> &middot;
+  <i class="fa fa-clock-o"></i> <%= @evento.fecha_ini.strftime('%H:%M') %> a
+  <i class="fa fa-calendar"></i> <%= @evento.fecha_fin.strftime('%d/%m/%y') %> &middot;
   <i class="fa fa-clock-o"></i> <%= @evento.fecha_fin.strftime('%H:%M') %> <br>
   <%= "<strong class='text-success'>Día nacional de celebracion</strong>".html_safe if @evento.celebracion %>
 </p>
@@ -21,7 +21,7 @@
 </p>
 <hr class="my-2">
 <p class="text-break">
-  <i class="fa fa-info-circle"></i> <%= @evento.informes %>
+  <i class="fa fa-info-circle"></i> <%= @evento.informes.html_safe %>
 </p>
 <%  if @usuario.present? %>
   <hr class="my-4">
