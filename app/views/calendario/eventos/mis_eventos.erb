@@ -7,18 +7,18 @@
     <div class="col" id="list-container">
       <div class="list-group">
         <% @eventos.each do |evento| %>
-          <a class="list-group-item list-group-item-action list-eventos shadow-sm" id="list-evento-<%= evento.id %>-list" href="<%= at_servicios(calendario_evento_path(evento)) %>" style="background-color: <%= dameColorFormato(evento.formato, evento.celebracion) %>">
+          <a class="list-group-item list-group-item-action list-eventos shadow-sm border-0 mb-1 text-white-50" id="list-evento-<%= evento.id %>-list" href="<%= at_servicios(calendario_evento_path(evento)) %>" style="background-color: <%= dameColorFormato(evento.formato, evento.celebracion) %>;">
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1"><%= evento.titulo %></h5>
-              <small><%= evento.fecha_ini.strftime('%d/%m/%y') %> </small>
+              <h4 class="mb-1 text-white"><%= evento.titulo %></h4>
+              <b><%= evento.fecha_ini.strftime('%d/%m/%y') %> </b>
             </div>
             <p class="mb-1"><%= evento.actividad %></p>
-            <small><%= evento.estado%></small>
+            <zxzxx><%= evento.estado%></zxzxx>
           </a>
         <% end %>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-5">
       <div class="tab-content bg-light border shadow-sm p-4" id="evento-content"></div>
     </div>
   </div>
