@@ -36,7 +36,7 @@
       <%= link_to 'Borrar evento', at_servicios(calendario_evento_path(@evento)), "data-metodo" => "delete", "data-token" => "#{form_authenticity_token}", class: 'btn btn-outline-danger mx-2 rusure invisible' %>
       <%= button_tag 'Cancelar', type: 'button', class: 'btn btn-outline-success mx-2 rusure invisible', onclick: "$('.rusure').toggleClass('invisible');" %>
     </div>
-    <p class="text-right h6 my-3">Evento creado por: <strong><%= @usuario %></strong></p>
+    <p class="text-right h6 my-3">Evento creado por: <strong><%= @evento.usuario %></strong></p>
   <% end %>
 
   <%= link_to "<i class='fa fa-angle-double-left'></i> Regresar a eventos".html_safe, at_servicios(@usuario.present? ? mis_eventos_calendario_eventos_path : calendario_eventos_path), class: 'btn btn-link pl-0' %>
