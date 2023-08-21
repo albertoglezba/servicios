@@ -50,8 +50,8 @@
     </div>
 
     <div class="form-group col-6 mb-3">
-      <%= form.label :informes, "Informes, contacto, dirección, URL del evento, etc" %>
-      <%= form.text_field :informes, id: :evento_informes, class: "form-control form-control-lg dis-if-nal" %>
+      <%= form.label :informes, "Informes, contacto, dirección, URL del evento, etc (admite etiquetas HTML básicas)" %>
+      <%= form.text_area :informes, id: :evento_informes, class: "form-control form-control-lg dis-if-nal" %>
     </div>
 
     <div class="form-group col-6 mb-3">

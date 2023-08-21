@@ -12,11 +12,17 @@
           <% end %>
         <% end %>
       </div>
-      <div class="col-4">
-        <div class="tab-content bg-light border shadow-sm px-4" id="evento-content"></div>
-        <button class="btn btn-outline-light border" onClick="window.location.href='/conabio/ecos-de-la-naturaleza'">
-          <img class="img-fluid" src="/media/1/conabio/ecos-naturaleza/ecos-nat-logo.jpg" alt="Boletín informativo">
-        </button>
+      <div class="col-4 d-flex flex-column">
+        <div class="tab-content mb-auto" id="evento-content">
+          <%= render partial: 'calendario/eventos/novedades_boletin' %>
+        </div>
+
+        <div class="h4 font-weight-bolder text-black-50">
+          <i class="fa fa-square" style="color: #005378;"></i> Presencial<br>
+          <i class="fa fa-square" style="color: #c2b59b;"></i> Virtual<br>
+          <i class="fa fa-square" style="color: #b55410;"></i> Híbrido<br>
+          <i class="fa fa-square" style="color: #747b0e;"></i> Celebración ambiental
+        </div>
       </div>
     </div>
   </div>
