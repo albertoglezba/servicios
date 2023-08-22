@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20230815023042) do
 
-  create_table "conagro", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "conagro", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci" do |t|
     t.string "nombre"
     t.string "apellidos"
     t.string "correo"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20230815023042) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "eventos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "eventos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci" do |t|
     t.string "titulo", null: false
     t.string "actividad"
     t.string "otra_actividad"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20230815023042) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "naturalista_estadisticas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string "titulo"
+  create_table "naturalista_estadisticas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci" do |t|
+    t.string "titulo", limit: 190
     t.string "icono"
     t.text "descripcion"
     t.integer "lugar_id"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20230815023042) do
     t.string "tipo_proyecto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ubicacion"
+    t.string "ubicacion", limit: 190
     t.string "clase_proyecto"
     t.boolean "publico", default: true, null: false
     t.boolean "actualizo", default: true, null: false

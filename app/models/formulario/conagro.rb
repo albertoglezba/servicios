@@ -7,4 +7,15 @@ class Formulario::Conagro < ApplicationRecord
 
     EJES = [["Eje 1 - Transición agroecológica y otros enfoques afines: políticas públicas nacionales exitosas.", "Eje 1"], ["Eje 2 - Experiencias relevantes de transición agroecológica y otros enfoques afines:  los pequeños y medianos productores.", "Eje 2"], ["Eje 3 - Experiencias para la sustitución del glifosato y semillas transgénicas: avances en las políticas públicas, las acciones de las organizaciones y movimientos y las alianzas.", "Eje 3"], ["Eje 4 - Las acciones populares a favor de Agroecología en el mundo: las organizaciones, movimientos y las alianzas estratégicas.", "Eje 4"], ["Eje 5 - Transformación de los marcos normativos de los sistemas agroalimentarios en un marco de cooperación para el desarrollo en un mundo multipolar.", "Eje 5"], ["Eje 6 - Educación y comunicación popular, campesina e indígena y otras pedagogías: comunidades aprendizajes agroecológicos con enfoques territoriales.", "Eje 6"], ["Eje 7 - La transición agroecológica y su relación con otros desafíos del campo y las perspectivas a futuro.", "Eje 7"]]
 
+    def dame_pais
+        PAISES.each do |pais_a|
+            return pais_a.first if pais_a.last == pais
+        end    
+    end
+
+    def dame_eje
+        EJES.each do |eje_a|
+            return eje_a.first if eje_a.last == eje
+        end
+    end
 end
