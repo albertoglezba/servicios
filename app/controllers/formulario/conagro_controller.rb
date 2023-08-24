@@ -72,6 +72,6 @@ class Formulario::ConagroController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conagro_params
-      params.require(:formulario_conagro).permit(:nombre, :apellidos, :correo, :pais, :institucion, :cargo, :eje)
+      params.require(:formulario_conagro).permit(:nombre, :apellidos, :correo, :pais, :institucion, :cargo, eje: [])
     end
 end

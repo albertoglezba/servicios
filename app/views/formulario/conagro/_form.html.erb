@@ -1,3 +1,17 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        var arr = new Array();
+        $("#conagro_eje").change(function() {
+            $(this).find("option:selected")
+            if ($(this).find("option:selected").length > 3) {
+                $(this).find("option").removeAttr("selected");
+                $(this).val(arr);
+                alert('Solo puedes escoger 3 ejes como máximo.');
+            }
+        });
+    });
+</script>
+
 <%= form_with(model: conagro, local: true, url: url) do |form| %>
   <% if conagro.errors.any? %>
     <div id="error_explanation">
@@ -42,8 +56,8 @@
   </div>
 
   <div class="input-group my-3">
-    <%= form.label :eje, "Eje en el que participa", class: "input-group-text font-weight-bold text-secondary" %>
-    <%= form.select :eje, Formulario::Conagro::EJES, {prompt: "- - - Selecciona tu eje - - -"}, {id: :conagro_eje, class: "form-control"} %>
+    <%= form.label :eje, "Eje(s) en el que participa (máximo 3)", class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.select :eje, Formulario::Conagro::EJES, {include_hidden: false}, {id: :conagro_eje, class: "form-control", multiple: true, size: 7} %>
   </div>
 
   <div class="text-right">
