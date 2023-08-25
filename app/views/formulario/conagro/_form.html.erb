@@ -1,11 +1,10 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var arr = new Array();
-        $("#conagro_eje").change(function() {
-            $(this).find("option:selected")
-            if ($(this).find("option:selected").length > 3) {
-                $(this).find("option").removeAttr("selected");
-                $(this).val(arr);
+        $(".conagro_eje").change(function() {
+            var checkboxes = $(".conagro_eje").filter(":checked")
+            if (checkboxes.length > 3) {
+                $(".conagro_eje").prop('checked', false);
                 alert('Solo puedes escoger 3 ejes como máximo.');
             }
         });
@@ -55,9 +54,14 @@
     <%= form.text_field :cargo, id: :conagro_cargo, class: "form-control" %>
   </div>
 
-  <div class="input-group my-3">
+  <div class="my-3">
     <%= form.label :eje, "Eje(s) en el que participa (máximo 3)", class: "input-group-text font-weight-bold text-secondary" %>
-    <%= form.select :eje, Formulario::Conagro::EJES, {include_hidden: false}, {id: :conagro_eje, class: "form-control", multiple: true, size: 7} %>
+    <% Formulario::Conagro::EJES.each do |eje| %>
+      <div class="form-check-inline mt-4">
+        <%= form.check_box :eje, {multiple: true, class: "form-check-input conagro_eje"}, eje %>
+        <%= form.label :eje, eje %>
+      </div>
+    <% end %>
   </div>
 
   <div class="text-right">

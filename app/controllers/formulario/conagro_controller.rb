@@ -25,6 +25,9 @@ class Formulario::ConagroController < ApplicationController
   # POST /conagro
   # POST /conagro.json
   def create
+    params["formulario_conagro"]["eje"] = params["formulario_conagro"]["eje"].delete_if {|eje| eje == "0"}
+    params["formulario_conagro"]["eje"] = nil  if params["formulario_conagro"]["eje"].empty?
+    
     @conagro = Formulario::Conagro.new(conagro_params)
 
     respond_to do |format|
