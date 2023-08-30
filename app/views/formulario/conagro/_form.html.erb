@@ -41,11 +41,16 @@
 
   <div class="input-group my-3">
     <%= form.label :pais, "País", class: "input-group-text font-weight-bold text-secondary" %>
-    <%= form.select :pais, Formulario::Conagro::PAISES, {prompt: "- - - Selecciona tu país - - -"}, {id: :conagro_pais, class: "form-control"} %>
+    <%= form.select :pais, Formulario::Conagro::PAISES, {prompt: "- - - Selecciona - - -"}, {id: :conagro_pais, class: "form-control"} %>
   </div>
 
   <div class="input-group my-3">
-    <%= form.label :institucion, "Institución u organización", class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.label :tipo_institucion, "Tipo de institución u organización", class: "input-group-text font-weight-bold text-secondary" %>
+    <%= form.select :tipo_institucion, Formulario::Conagro::TIPOS_INSTITUCIONES, {prompt: "- - - Selecciona - - -"}, {id: :conagro_tipo_institucion, class: "form-control"} %>
+  </div>
+
+  <div class="input-group my-3">
+    <%= form.label :institucion, "Nombre de la institución u organización", class: "input-group-text font-weight-bold text-secondary" %>
     <%= form.text_field :institucion, id: :conagro_institucion, class: "form-control" %>
   </div>
 
