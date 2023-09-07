@@ -25,13 +25,16 @@ class Formulario::ConagroController < ApplicationController
   # POST /conagro
   # POST /conagro.json
   def create
+    params["formulario_conagro"]["eje"] = params["formulario_conagro"]["eje"].delete_if {|eje| eje == "0"}
+    params["formulario_conagro"]["eje"] = nil  if params["formulario_conagro"]["eje"].empty?
+    
     @conagro = Formulario::Conagro.new(conagro_params)
 
     respond_to do |format|
       if @conagro.save
         ConagroMailer.inscripcion(@conagro).deliver
 
-        format.html { redirect_to new_formulario_conagro_url, notice: 'Tu inscripción quedo registrada correctamente. Mandaremos un correo con la confirmación de tu inscripción.' }
+        format.html { redirect_to new_formulario_conagro_url, notice: 'Tu inscripción quedo registrada correctamente. Mandaremos un correo con la confirmación de tu inscripción, asegurate de revisar también la bandeja de spam.' }
         format.json { render :show, status: :created, location: @conagro }
       else
         format.html { render :new }
@@ -72,6 +75,6 @@ class Formulario::ConagroController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conagro_params
-      params.require(:formulario_conagro).permit(:nombre, :apellidos, :correo, :pais, :institucion, :cargo, :eje)
+      params.require(:formulario_conagro).permit(:nombre, :apellidos, :correo, :pais, :tipo_institucion, :institucion, :cargo, eje: [])
     end
 end

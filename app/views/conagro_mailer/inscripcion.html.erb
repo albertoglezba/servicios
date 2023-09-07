@@ -1,5 +1,91 @@
+<style>
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+    .styled-table tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+    }
+
+</style>
+
 <div id="content" class="container-fluid">
     <div class="row main">
-        Prueba
+
+        <img src="https://servicios.conabio.gob.mx/formulario/logo_CIAgroec_23.png" class="img-fluid mb-5" />
+
+        <hr /><br /><br /><br />
+        La inscripción se completo satisfactoriamente con los siguientes datos:
+
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nombre</td>
+                    <td><%= @conagro.nombre %> <%= @conagro.apellidos %></td>
+                </tr>
+                <tr>
+                    <td>Correo</td>
+                    <td><%= @conagro.correo %></td>
+                </tr>
+                <tr>
+                    <td>Tipo de la institución u organización</td>
+                    <td><%= @conagro.tipo_institucion %></td>
+                </tr>                
+                <tr>
+                    <td>Nombre de la institución u organización</td>
+                    <td><%= @conagro.institucion %></td>
+                </tr>
+                <tr>
+                    <td>País</td>
+                    <td><%= @conagro.dame_pais %></td>
+                </tr>
+                <tr>
+                    <td>Cargo</td>
+                    <td><%= @conagro.cargo %></td>
+                </tr>
+                <tr>
+                    <td>Eje(s)</td>
+                    <td><%= @conagro.dame_eje %></td>
+                </tr>                                                                
+            </tbody>
+        </table>
+
+        Inscrito en: <%= @conagro.created_at %>
+
     </div>
 </div>
